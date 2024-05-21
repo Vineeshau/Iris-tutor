@@ -1,0 +1,39 @@
+[
+    {
+      "imageUrl": "/documents.png",
+      "title": "Documents",
+      "link": "/",
+      "description": ""
+    },
+    {
+      "imageUrl": "/test.png",
+      "title": "Test/Quizzes",
+      "link": "/",
+      "description": ""
+    },
+    {
+      "imageUrl": "/grade.png",
+      "title": "Grades",
+      "link": "/",
+      "description": ""
+    },
+    {
+      "imageUrl": "/manage_individual.png",
+      "title": "Manage individual permissions",
+      "link": "/",
+      "description": "How-to"
+    },
+    {
+      "imageUrl": "/treat_your_team.png",
+      "title": "Treat your teams like pros.",
+      "link": "/",
+      "description": "Blog"
+    },
+    {
+      "imageUrl": "/your_team_mate.png",
+      "title": "Your teammates can zoom in too.",
+      "link": "/",
+      "description": "Blog"
+    }
+  ]
+  
