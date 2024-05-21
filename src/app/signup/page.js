@@ -66,10 +66,12 @@ function Signup() {
           </CardHeader>
           <CardContent className="flex flex-col gap-4 items-center">
             <p className="text-2xl font-bold text-[#171A1F]">Sign Up</p>
+            <Link href="/">
             <div className="w-full lg:w-96 h-11 rounded-xl border border-[#8e939d] flex justify-center items-center text-lg text-[#171A1F]">
               <FcGoogle />
               Sign up with Google
             </div>
+            </Link>
             <div className="pt-4">
               <hr className="w-full lg:w-96 border-[#ededed]" />
             </div>
