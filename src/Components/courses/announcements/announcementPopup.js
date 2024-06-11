@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/Components/ui/button";
 import { X } from "lucide-react";
 import {
@@ -23,12 +23,12 @@ import { ScrollArea } from "@/Components/ui/scroll-area";
 
 const animatedComponents = makeAnimated();
 const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
+  { value: "All Sections", label: "All Sections" },
+  { value: "Section 1", label: "Section 1" },
+  { value: "Section 2", label: "Section 2" },
 ];
 
-function AnnouncementPopup({ popUp, onSuccess }) {
+function AnnouncementPopup({ popUp, onSuccess, editData, isEditMode }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [editorData, setEditorData] = useState("");
   const [checkboxOptions, setCheckboxOptions] = useState({
@@ -51,6 +51,22 @@ function AnnouncementPopup({ popUp, onSuccess }) {
     },
   });
 
+  useEffect(() => {
+    if (isEditMode && editData) {
+      form.setValue("title", editData.title);
+      form.setValue("titleDescription", editData.titleDescription);
+      form.setValue("postTo", editData.postTo);
+      form.setValue("attachment", editData.attachment);
+      setEditorData(editData.titleDescription);
+      setSelectedOptions(
+        editData.postTo.split(",").map((option) => {
+          return options.find((o) => o.value === option);
+        })
+      );
+      setCheckboxOptions(JSON.parse(editData.options));
+    }
+  }, [isEditMode, editData, form]);
+
   const handleSelectChange = (selected) => {
     setSelectedOptions(selected);
     form.setValue("postTo", selected.map((option) => option.value).join(","));
@@ -66,7 +82,19 @@ function AnnouncementPopup({ popUp, onSuccess }) {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
+    const announcements =
+      JSON.parse(localStorage.getItem("announcements")) || [];
+
+    if (isEditMode) {
+      const index = announcements.findIndex((ann) => ann.id === editData.id);
+      announcements[index] = { ...data, id: editData.id };
+    } else {
+      data.id = Date.now(); // Assign a unique ID to each announcement
+      announcements.push(data);
+    }
+
+    localStorage.setItem("announcements", JSON.stringify(announcements));
+
     form.reset({
       title: "",
       titleDescription: "",
@@ -74,14 +102,16 @@ function AnnouncementPopup({ popUp, onSuccess }) {
       attachment: "",
       options: "",
     });
-    onSuccess(data.moduleName);
+    onSuccess();
   };
 
   return (
     <div className="w-full lg:w-[950px] card mx-auto my-4 overflow-hidden">
       <ScrollArea className="h-[500px]">
         <div className="flex justify-between p-4 lg:p-8">
-          <p className="text-xl lg:text-3xl">Add Announcement</p>
+          <p className="text-xl lg:text-3xl">
+            {isEditMode ? "Edit Announcement" : "Add Announcement"}
+          </p>
           <X className="cursor-pointer" onClick={popUp} />
         </div>
         <hr />
@@ -246,21 +276,12 @@ function AnnouncementPopup({ popUp, onSuccess }) {
                 )}
               />
             </div>
-            <hr className="w-full" />
-            <div className="flex flex-col lg:flex-row justify-end gap-2 w-full mt-4 lg:mt-0 px-4 lg:px-0 p-2">
-              <Button
-                type="button"
-                variant="outline"
-                className="w-full lg:w-auto rounded text-sm border-black"
-                onClick={popUp}
-              >
-                Cancel
-              </Button>
+            <div className="flex gap-4 justify-end py-4 w-full lg:w-[850px]">
               <Button
                 type="submit"
                 className="w-full lg:w-auto rounded border-none text-sm text-white bg-blue-600"
               >
-                Publish
+                {isEditMode ? "Update Announcement" : "Publish"}
               </Button>
             </div>
           </form>

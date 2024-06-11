@@ -13,11 +13,13 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import AnnouncementPopup from "./announcementPopup";
+import AnnouncementDatas from "./announcementDatas";
 
 function Announcements() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isSuccessVisible, setIsSuccessVisible] = useState(false);
   const [moduleName, setModuleName] = useState("");
+  const [hasAnnouncements, setHasAnnouncements] = useState(true);
 
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
@@ -27,7 +29,14 @@ function Announcements() {
     setModuleName(name);
     setIsPopupVisible(false);
     setIsSuccessVisible(true);
+    setHasAnnouncements(true);
   };
+
+  const handleEmpty = () => {
+    setIsSuccessVisible(false);
+    setHasAnnouncements(false);
+  };
+
   return (
     <div className="flex flex-col h-screen relative px-4 md:px-20 lg:px-10">
       <div className="flex flex-col items-end p-5">
@@ -48,12 +57,16 @@ function Announcements() {
         </Button>
       </div>
       <div className="flex-grow">
-        {isSuccessVisible ? (
-          // <AnnouncementPopup moduleName={moduleName} />
-          <></>
+        {hasAnnouncements ? (
+          <AnnouncementDatas onEmpty={handleEmpty} />
         ) : (
           <div className="flex flex-col items-center py-10">
-              <Image src="/Announcement.png" width={329} height={329} alt="image" />
+            <Image
+              src="/Announcement.png"
+              width={329}
+              height={329}
+              alt="image"
+            />
           </div>
         )}
       </div>
@@ -92,7 +105,10 @@ function Announcements() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="relative bg-white shadow-2xl rounded-2xl">
             {isPopupVisible && (
-              <AnnouncementPopup popUp={togglePopup} onSuccess={handleSuccess} />
+              <AnnouncementPopup
+                popUp={togglePopup}
+                onSuccess={handleSuccess}
+              />
             )}
           </div>
         </div>
