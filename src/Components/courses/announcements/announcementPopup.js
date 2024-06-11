@@ -284,6 +284,14 @@ function AnnouncementPopup({ popUp, onSuccess, editData, isEditMode }) {
             </div>
             <div className="flex gap-4 justify-end py-4 w-full lg:w-[850px]">
               <Button
+                type="button"
+                variant="outline"
+                className="w-full lg:w-auto rounded text-sm border-black"
+                onClick={popUp}
+              >
+                Cancel
+              </Button>
+              <Button
                 type="submit"
                 className="w-full lg:w-auto rounded border-none text-sm text-white bg-blue-600"
               >
