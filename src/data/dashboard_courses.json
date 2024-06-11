@@ -1,0 +1,94 @@
+{
+  "publishedDatas": [
+    {
+      "id": 1,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/automation.jpg",
+      "link1": "courses/home",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 2,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/mern.jpg",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 3,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/node-js.webp",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 4,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/automation.jpg",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    }
+  ],
+  "unpublishedDatas": [
+    {
+      "id": 1,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/js.png",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 2,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/automation.jpg",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 3,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/automation.jpg",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 4,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/automation.jpg",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    }
+  ]
+}
