@@ -137,7 +137,7 @@ export default function Home() {
                       Publish
                     </button>
                   )}
-                  <div className="sm:h-[45.45%] md:h-[68.18%] lg:h-[50%] xl:h-[100%] overflow-hidden">
+                  <div className=" overflow-hidden">
                     <Image
                       src={card.imageUrl}
                       alt={card.title}
@@ -195,6 +195,7 @@ export default function Home() {
           </button>
         </div>
         <div>
+          {/* Pagination dots */}
           <div className="flex justify-center items-center space-x-2">
             {Array.from({ length: 4 }, (_, i) => i + 1).map((page) => (
               <button
