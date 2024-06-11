@@ -90,6 +90,7 @@ function sideBar() {
               ))}
             </ul>
           </CardContent>
+          </ScrollArea>
           <CardFooter className="w-28 sm:w-28 md:w-60 lg:w-60 flex flex-row items-start py-4 gap-2 bg-[#3278FF] text-white sticky bottom-0">
             <div>
               <CircleUserRound />
@@ -103,7 +104,6 @@ function sideBar() {
               ))}
             </div>
           </CardFooter>
-        </ScrollArea>
       </Card>
     </div>
   );
