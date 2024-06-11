@@ -95,7 +95,7 @@ function AnnouncementPopup({ popUp, onSuccess, editData, isEditMode }) {
       const index = announcements.findIndex((ann) => ann.id === editData.id);
       announcements[index] = { ...data, id: editData.id };
     } else {
-      data.id = Date.now(); // Assign a unique ID to each announcement
+      data.id = Date.now(); 
       announcements.push(data);
     }
 
@@ -112,10 +112,10 @@ function AnnouncementPopup({ popUp, onSuccess, editData, isEditMode }) {
   };
 
   return (
-    <div className="w-full lg:w-[950px] card mx-auto my-4 overflow-hidden">
-      <ScrollArea className="h-[500px]">
+    <div className="w-full lg:w-[1000px] card mx-auto my-4 overflow-hidden">
+      <ScrollArea className="h-[600px]">
         <div className="flex justify-between p-4 lg:p-8">
-          <p className="text-xl lg:text-3xl">
+          <p className="text-xl lg:text-3xl font-bold"> 
             {isEditMode ? "Edit Announcement" : "Add Announcement"}
           </p>
           <X className="cursor-pointer" onClick={popUp} />

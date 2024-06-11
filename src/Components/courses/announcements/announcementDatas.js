@@ -76,11 +76,10 @@ function AnnouncementDatas({ onEmpty }) {
               <div className="flex flex-col gap-4 py-10">
                 <div className="flex flex-col gap-2">
                   <div className="flex justify-between">
-                    <p className="text-2xl">{announcement.title}</p>
+                    <p className="text-2xl font-bold">{announcement.title}</p>
                     <p className="text-xs">
                       {new Date().toLocaleString()}
-                    </p>{" "}
-                    {/* Updated line */}
+                    </p>
                   </div>
                   <p className="text-xs text-[blue]">Email</p>
                   <p>{announcement.postTo}</p>
