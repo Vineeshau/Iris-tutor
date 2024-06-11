@@ -63,7 +63,13 @@ function AnnouncementPopup({ popUp, onSuccess, editData, isEditMode }) {
           return options.find((o) => o.value === option);
         })
       );
-      setCheckboxOptions(JSON.parse(editData.options));
+      if (editData.options) {
+        try {
+          setCheckboxOptions(JSON.parse(editData.options));
+        } catch (error) {
+          console.error("Error parsing options:", error);
+        }
+      }
     }
   }, [isEditMode, editData, form]);
 
