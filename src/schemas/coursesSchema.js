@@ -30,4 +30,59 @@ export const addAnnouncementSchema = z.object({
   options: z.string().optional(),
 });
 
+export const addAssignmentSchema = z.object({
+  assignmentName: z.string().nonempty("Assignment name is required"),
+  assignmentDescription: z.string().optional(),
+  points: z.string().nonempty("Points is required"),
+  assignmentGroup: z.string().nonempty("Assignment group is required"),
+  assignmentGrade: z.string().nonempty("Assignment grade is required"),
+  count: z.boolean(),
+  submissionType: z.string().nonempty("Submission type is required"),
+  submissionAttempts: z.string().nonempty("Submission attempts is required"),
+  attemptsNumber: z.string().optional(),
+  groupAssignment: z.boolean(),
+  peerReview: z.boolean(),
+  assignTo: z.string(),
+  dueDate: z
+    .string()
+    .nonempty("Due date is required")
+    .refine(
+      (value) => {
+        const selectedDate = new Date(value);
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+        return selectedDate >= currentDate;
+      },
+      { message: "Date must be today or a future date" }
+    ),
+  availableFrom: z
+    .string()
+    .nonempty("Available from is required")
+    .refine(
+      (value) => {
+        const selectedDate = new Date(value);
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+        return selectedDate >= currentDate;
+      },
+      { message: "Date must be today or a future date" }
+    ),
+  availableUntil: z
+    .string()
+    .nonempty("Avilable date is required")
+    .refine(
+      (value) => {
+        const selectedDate = new Date(value);
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+        return selectedDate >= currentDate;
+      },
+      { message: "Date must be today or a future date" }
+    ),
+});
 
+export const groupSchema = z.object({
+  assignmentGroup: z.string().min(2, {
+    message: "Please give a valid group name.",
+  }),
+});

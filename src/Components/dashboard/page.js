@@ -73,7 +73,7 @@ export default function Home() {
                 <div className="flex items-center space-x-1">
                   <CalendarDays className="text-blue-500" />
                   <Link
-                    href="/calendar"
+                    href="/dashboard/calendar"
                     className="text-sm font-bold text-blue-500"
                   >
                     Calendar
