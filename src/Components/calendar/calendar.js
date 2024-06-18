@@ -1,4 +1,5 @@
-"use client"
+"use client"; 
+
 import React, { useState, useMemo, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
@@ -10,12 +11,22 @@ const ComplianceCalendar = () => {
   const localizer = useMemo(() => momentLocalizer(moment), []);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [events, setEvents] = useState(() => {
-    const storedEvents = localStorage.getItem("events");
-    return storedEvents ? JSON.parse(storedEvents) : [];
+    // Check if window is defined to ensure it's executed in the browser environment
+    if (typeof window !== "undefined") {
+      const storedEvents = localStorage.getItem("events");
+      return storedEvents ? JSON.parse(storedEvents) : [];
+    } else {
+      return [];
+    }
   });
   const [assignments, setAssignments] = useState(() => {
-    const storedAssignments = localStorage.getItem("assignments");
-    return storedAssignments ? JSON.parse(storedAssignments) : [];
+    // Check if window is defined to ensure it's executed in the browser environment
+    if (typeof window !== "undefined") {
+      const storedAssignments = localStorage.getItem("assignments");
+      return storedAssignments ? JSON.parse(storedAssignments) : [];
+    } else {
+      return [];
+    }
   });
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -23,11 +34,15 @@ const ComplianceCalendar = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem("events", JSON.stringify(events));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("events", JSON.stringify(events));
+    }
   }, [events]);
 
   useEffect(() => {
-    localStorage.setItem("assignments", JSON.stringify(assignments));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("assignments", JSON.stringify(assignments));
+    }
   }, [assignments]);
 
   const handleCalendarNavigate = (date) => {
