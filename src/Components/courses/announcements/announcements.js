@@ -58,7 +58,7 @@ function Announcements() {
       </div>
       <div className="flex-grow">
         {hasAnnouncements ? (
-          <AnnouncementDatas onEmpty={handleEmpty} />
+          <AnnouncementDatas onEmpty={handleEmpty} isPopupVisible={isPopupVisible}/>
         ) : (
           <div className="flex flex-col items-center py-10">
             <Image

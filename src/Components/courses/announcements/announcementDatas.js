@@ -15,7 +15,7 @@ import {
 import { Input } from "@/Components/ui/input";
 import AnnouncementPopup from "./announcementPopup";
 
-function AnnouncementDatas({ onEmpty }) {
+function AnnouncementDatas({ onEmpty, isPopupVisible }) {
   const [announcements, setAnnouncements] = useState([]);
   const [editData, setEditData] = useState(null);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -28,7 +28,7 @@ function AnnouncementDatas({ onEmpty }) {
     if (storedAnnouncements.length === 0) {
       onEmpty();
     }
-  }, []);
+  }, [isPopupVisible]);
 
   const handleDelete = (id) => {
     const updatedAnnouncements = announcements.filter(

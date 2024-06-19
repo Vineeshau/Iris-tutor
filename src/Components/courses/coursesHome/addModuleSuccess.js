@@ -33,7 +33,7 @@ import AddItemPopup from "./addItemPopup";
 import { Card, CardContent } from "@/Components/ui/card";
 import { Button } from "@/Components/ui/button";
 
-function AddModuleSuccess({ moduleName }) {
+function AddModuleSuccess({ moduleName, visible }) {
   const [modules, setModules] = useState({});
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isAccordionOpen, setIsAccordionOpen] = useState({
@@ -47,7 +47,7 @@ function AddModuleSuccess({ moduleName }) {
     if (storedModules) {
       setModules(JSON.parse(storedModules));
     }
-  }, []);
+  }, [visible]);
 
   const togglePopup = (moduleName) => {
     setCurrentModule(moduleName);
