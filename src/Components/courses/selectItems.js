@@ -26,12 +26,12 @@ const dropdownItems = [
   { title: "Settings" },
 ];
 
-function SelectItems({ onValueChange }) {
+function SelectItems({ onValueChange, selectedComponent }) {
   return (
     <div className="px-5 md:px-20 lg:px-30">
       <Select onValueChange={onValueChange}>
         <SelectTrigger className="w-full md:w-[294px] border border-black">
-          <SelectValue placeholder="Home" />
+          <SelectValue placeholder={selectedComponent} />
         </SelectTrigger>
         <SelectContent>
           {dropdownItems.map((items) => (

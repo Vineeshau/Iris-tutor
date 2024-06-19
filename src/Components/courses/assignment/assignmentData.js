@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/Components/ui/card";
 import { Button } from "@/Components/ui/button";
 import {
   ChevronDown,
-  ChevronUp,
+  ChevronRight ,
   Plus,
   EllipsisVertical,
   Pencil,
@@ -26,7 +26,7 @@ import GroupPopup from "./groupPopup";
 import DraggableAssignmentCard from "./draggableAssignmentCard";
 import { Draggable, Droppable } from "react-drag-and-drop";
 
-function AssignmentData({ visible }) {
+function AssignmentData({ visibleAssignment, visibleGroup }) {
   const [assignments, setAssignments] = useState([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [currentAssignment, setCurrentAssignment] = useState(null);
@@ -35,13 +35,11 @@ function AssignmentData({ visible }) {
   const [reload, setReload] = useState(false);
   const [groupPopup, setGroupPopup] = useState(false);
   const [groupVisibility, setGroupVisibility] = useState({});
-  const initialized = useRef(false);
 
-  // Initialize group visibility state
   useEffect(() => {
     const initialVisibility = {};
     assignmentGroups.forEach((group) => {
-      initialVisibility[group.id] = true; // or false if you want them collapsed initially
+      initialVisibility[group.id] = true;
     });
     setGroupVisibility(initialVisibility);
   }, [assignmentGroups]);
@@ -54,20 +52,16 @@ function AssignmentData({ visible }) {
   };
 
   useEffect(() => {
-    if (!initialized.current) {
-      const storedAssignments =
-        JSON.parse(localStorage.getItem("assignments")) || [];
-      setAssignments(storedAssignments);
-      console.log("Loaded assignments from local storage:", storedAssignments);
+    const storedAssignments =
+      JSON.parse(localStorage.getItem("assignments")) || [];
+    setAssignments(storedAssignments);
+    console.log("Loaded assignments from local storage:", storedAssignments);
 
-      const storedGroups =
-        JSON.parse(localStorage.getItem("assignmentGroups")) || [];
-      setAssignmentGroups(storedGroups);
-      console.log("Loaded groups from local storage:", storedGroups);
-
-      initialized.current = true;
-    }
-  }, [visible]);
+    const storedGroups =
+      JSON.parse(localStorage.getItem("assignmentGroups")) || [];
+    setAssignmentGroups(storedGroups);
+    console.log("Loaded groups from local storage:", storedGroups);
+  }, [visibleAssignment, visibleGroup, isPopupOpen, groupPopup]);
 
   const handleEditItem = (index) => {
     setCurrentAssignment(assignments[index]);
@@ -109,10 +103,6 @@ function AssignmentData({ visible }) {
     }
   };
 
-  const hideContent = () => {
-    setLoad(!load);
-  };
-
   const handleDrop = (data) => {
     const { assignment, index } = JSON.parse(data.assignment);
     const droppedGroupId = assignment.groupId;
@@ -128,7 +118,6 @@ function AssignmentData({ visible }) {
         return group;
       })
       .map((group) => {
-        // Update assignment's assignmentGroup field
         group.assignments.forEach((a, idx) => {
           if (idx === index) {
             a.assignmentGroup = group.assignmentGroup;
@@ -156,11 +145,11 @@ function AssignmentData({ visible }) {
               <div className="flex gap-2">
                 <div className="flex">
                   {groupVisibility[group.id] ? (
-                    <ChevronUp
+                    <ChevronDown 
                       onClick={() => toggleGroupVisibility(group.id)}
                     />
                   ) : (
-                    <ChevronDown
+                    <ChevronRight
                       onClick={() => toggleGroupVisibility(group.id)}
                     />
                   )}
@@ -219,16 +208,15 @@ function AssignmentData({ visible }) {
             </div>
             {groupVisibility[group.id] && (
               <CardContent>
-                {
-                  assignments.map((assignment, idx) => (
-                    <DraggableAssignmentCard
-                      key={assignment.id}
-                      assignment={assignment}
-                      index={idx}
-                      handleEditItem={handleEditItem}
-                      handleDeleteItem={handleDeleteItem}
-                    />
-                  ))}
+                {assignments.map((assignment, idx) => (
+                  <DraggableAssignmentCard
+                    key={assignment.id}
+                    assignment={assignment}
+                    index={idx}
+                    handleEditItem={handleEditItem}
+                    handleDeleteItem={handleDeleteItem}
+                  />
+                ))}
               </CardContent>
             )}
           </Card>
@@ -261,3 +249,4 @@ function AssignmentData({ visible }) {
 }
 
 export default AssignmentData;
+  

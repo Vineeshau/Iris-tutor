@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { Button } from "@/Components/ui/button";
 import { X } from "lucide-react";
@@ -29,12 +27,24 @@ function AddModulePopup({ popUp, onSuccess }) {
   });
 
   const onSubmit = (data) => {
+    const storedModules =
+      JSON.parse(localStorage.getItem("courseModules")) || {};
+    const newModuleName = data.moduleName;
+    storedModules[newModuleName] = {
+      lockUntil: data.lockUntil,
+      date: data.date,
+    };
+    localStorage.setItem("courseModules", JSON.stringify(storedModules));
+
+    // Reset form fields
     form.reset({
       moduleName: "",
       lockUntil: false,
       date: "",
     });
-    onSuccess(data.moduleName);
+
+    // Call onSuccess callback
+    onSuccess(newModuleName);
   };
 
   return (

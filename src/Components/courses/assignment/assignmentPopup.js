@@ -20,6 +20,8 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { ScrollArea } from "@/Components/ui/scroll-area";
+import { Toaster } from "@/Components/ui/sonner"
+import { toast } from "sonner"
 
 const animatedComponents = makeAnimated();
 const assignmentGroupItems = [
@@ -93,6 +95,7 @@ function AssignmentPopup({ popUp, assignment, groupName }) {
   };
 
   const onSubmit = (data) => {
+    toast("Event has been created.");
     const newAssignment = { ...data, groupName };
     let storedAssignments =
       JSON.parse(localStorage.getItem("assignments")) || [];
@@ -514,6 +517,7 @@ function AssignmentPopup({ popUp, assignment, groupName }) {
           </form>
         </ScrollArea>
       </Form>
+      <Toaster />
     </div>
   );
 }

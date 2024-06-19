@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-[#3278FF] text-white py-8 shadow-lg sticky top-0 z-50">
+    <nav className="bg-[#3278FF] text-white py-8 shadow-lg sticky top-0 right-0 z-50">
       <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center">
         {/* First Section: Search Bar */}
         <div className="flex-grow mb-4 lg:mb-0 lg:mr-4 lg:w-2/5">

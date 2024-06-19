@@ -8,9 +8,9 @@ import Courses from "../../data/dashboard_courses.json";
 
 function PopUp({ onLinkClick }) {
   return (
-    <div className="p-5 absolute inset-0 flex justify-start items-center z-50">
-      <div className="card shadow-2xl relative bg-white rounded-2xl overflow-hidden w-96 h-auto cursor-pointer">
-        <ScrollArea className="rounded-md border h-[650px]">
+    <div className="p-10 absolute inset-0 flex justify-start h-screen z-0">
+      <div className="card shadow-2xl relative bg-white rounded-2xl overflow-hidden w-96 cursor-pointer">
+        <ScrollArea className="rounded-md border h-screen">
           <div className="px-6 py-4 flex justify-between items-center">
             <h2 className="text-lg font-semibold">Courses</h2>
             <Link

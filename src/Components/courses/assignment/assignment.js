@@ -69,7 +69,8 @@ function Assignment() {
       <div className="flex-grow pb-5">
         <div>
             <AssignmentData
-              visible={isPopupVisible}
+              visibleAssignment={isPopupVisible}
+              visibleGroup={groupPopup}
             />
         </div>
       </div>

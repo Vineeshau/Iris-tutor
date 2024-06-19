@@ -2,7 +2,7 @@
   "publishedDatas": [
     {
       "id": 1,
-      "title": "Demo Course",
+      "title": "React js",
       "description": "Duration : 2 Hr",
       "term": "Default term",
       "imageUrl": "/mern.jpg",
@@ -13,7 +13,7 @@
     },
     {
       "id": 2,
-      "title": "Demo Course",
+      "title": "Physics",
       "description": "Duration : 2 Hr",
       "term": "Default term",
       "imageUrl": "/mern.jpg",
@@ -24,7 +24,7 @@
     },
     {
       "id": 3,
-      "title": "Demo Course",
+      "title": "Quantum Physics",
       "description": "Duration : 2 Hr",
       "term": "Default term",
       "imageUrl": "/mern.jpg",
@@ -35,7 +35,62 @@
     },
     {
       "id": 4,
-      "title": "Demo Course",
+      "title": "Ruby on Rails",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/mern.jpg",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 5,
+      "title": "UW IT",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/mern.jpg",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 6,
+      "title": "UI/UX",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/mern.jpg",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 7,
+      "title": "Python",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/mern.jpg",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 8,
+      "title": "Data Science",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/mern.jpg",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 9,
+      "title": "Flutter",
       "description": "Duration : 2 Hr",
       "term": "Default term",
       "imageUrl": "/mern.jpg",
@@ -89,6 +144,62 @@
       "link2": "link_to_2",
       "link3": "link_to_3",
       "link4": "link_to_4"
+    },
+    {
+      "id": 5,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/js.png",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 6,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/js.png",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 7,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/js.png",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 8,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/js.png",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
+    },
+    {
+      "id": 9,
+      "title": "Demo Course",
+      "description": "Duration : 2 Hr",
+      "term": "Default term",
+      "imageUrl": "/js.png",
+      "link1": "link_to_1",
+      "link2": "link_to_2",
+      "link3": "link_to_3",
+      "link4": "link_to_4"
     }
+   
   ]
 }

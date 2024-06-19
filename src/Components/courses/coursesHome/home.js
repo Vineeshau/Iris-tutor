@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/Components/ui/button";
 import {
   Plus,
@@ -19,6 +19,17 @@ function Home() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isSuccessVisible, setIsSuccessVisible] = useState(false);
   const [moduleName, setModuleName] = useState("");
+
+  // Use useEffect to set moduleName from localStorage
+  useEffect(() => {
+    const storedModules = localStorage.getItem("courseModules");
+    if (storedModules) {
+      const courseModules = JSON.parse(storedModules);
+      if (courseModules.length > 0) {
+        setModuleName(courseModules[0].name); // Assuming courseModules is an array of objects with a 'name' property
+      }
+    }
+  }, []);
 
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
@@ -50,7 +61,7 @@ function Home() {
         </Button>
       </div>
       <div className="flex-grow">
-        {isSuccessVisible ? (
+        {moduleName ? (
           <AddModuleSuccess moduleName={moduleName} />
         ) : (
           <div className="flex flex-col items-center py-10">

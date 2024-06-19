@@ -11,7 +11,6 @@ const ComplianceCalendar = () => {
   const localizer = useMemo(() => momentLocalizer(moment), []);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [events, setEvents] = useState(() => {
-    // Check if window is defined to ensure it's executed in the browser environment
     if (typeof window !== "undefined") {
       const storedEvents = localStorage.getItem("events");
       return storedEvents ? JSON.parse(storedEvents) : [];
@@ -20,7 +19,6 @@ const ComplianceCalendar = () => {
     }
   });
   const [assignments, setAssignments] = useState(() => {
-    // Check if window is defined to ensure it's executed in the browser environment
     if (typeof window !== "undefined") {
       const storedAssignments = localStorage.getItem("assignments");
       return storedAssignments ? JSON.parse(storedAssignments) : [];

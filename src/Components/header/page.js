@@ -41,7 +41,7 @@ function Page() {
             <Link href="/" className="text-gray-800 hover:text-gray-600">
               Home
             </Link>
-            <Link href="/" className="text-gray-800 hover:text-gray-600">
+            <Link href="/dashboard/courses" className="text-gray-800 hover:text-gray-600">
               Courses
             </Link>
             <Link href="/contactus" className="text-gray-800 hover:text-gray-600">
