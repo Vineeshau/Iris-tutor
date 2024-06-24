@@ -89,3 +89,13 @@ export const groupSchema = z.object({
     message: "Please give a valid group name.",
   }),
 });
+
+export const addDiscussionSchema = z.object({
+  title: z.string().min(2, {
+    message: "Please give a valid topic.",
+  }),
+  titleDescription: z.string().optional(),
+  postTo: z.string().optional(),
+  attachment: z.string().optional(),
+  options: z.string().optional(),
+});

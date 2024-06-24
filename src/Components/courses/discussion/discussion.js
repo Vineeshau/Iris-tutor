@@ -30,7 +30,6 @@ function Discussions() {
     setIsPopupVisible(false);
     setIsSuccessVisible(true);
     setHasDiscussions(true);
-    alert("Discussion created successfully!");
   };
 
   const handleEmpty = () => {
