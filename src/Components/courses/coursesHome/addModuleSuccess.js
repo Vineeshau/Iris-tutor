@@ -64,16 +64,14 @@ function AddModuleSuccess({ moduleName, visible }) {
   const handleAddItem = (item) => {
     const updatedModules = { ...modules };
     if (!Array.isArray(updatedModules[currentModule])) {
-      updatedModules[currentModule] = []; // Initialize as an array if not already
+      updatedModules[currentModule] = []; 
     }
 
     if (editItem !== null) {
-      // If editing an existing item
       updatedModules[currentModule][editItem] = item;
       setEditItem(null);
     } else {
-      // If adding a new item
-      updatedModules[currentModule].push(item); // Push the new item to the array
+      updatedModules[currentModule].push(item); 
     }
 
     setModules(updatedModules);
@@ -87,7 +85,6 @@ function AddModuleSuccess({ moduleName, visible }) {
 
   const handleDeleteItem = (moduleName, index) => {
     const updatedModules = { ...modules };
-    // Ensure updatedModules[moduleName] is an array before calling splice
     if (Array.isArray(updatedModules[moduleName])) {
       updatedModules[moduleName].splice(index, 1);
       setModules(updatedModules);

@@ -36,14 +36,12 @@ function AddModulePopup({ popUp, onSuccess }) {
     };
     localStorage.setItem("courseModules", JSON.stringify(storedModules));
 
-    // Reset form fields
     form.reset({
       moduleName: "",
       lockUntil: false,
       date: "",
     });
 
-    // Call onSuccess callback
     onSuccess(newModuleName);
   };
 

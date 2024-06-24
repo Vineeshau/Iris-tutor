@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { Card, CardContent } from "@/Components/ui/card";
 import { Button } from "@/Components/ui/button";
 import {
   ChevronDown,
-  ChevronRight ,
+  ChevronRight,
   Plus,
   EllipsisVertical,
   Pencil,
@@ -55,12 +57,10 @@ function AssignmentData({ visibleAssignment, visibleGroup }) {
     const storedAssignments =
       JSON.parse(localStorage.getItem("assignments")) || [];
     setAssignments(storedAssignments);
-    console.log("Loaded assignments from local storage:", storedAssignments);
 
     const storedGroups =
       JSON.parse(localStorage.getItem("assignmentGroups")) || [];
     setAssignmentGroups(storedGroups);
-    console.log("Loaded groups from local storage:", storedGroups);
   }, [visibleAssignment, visibleGroup, isPopupOpen, groupPopup]);
 
   const handleEditItem = (index) => {
@@ -77,14 +77,22 @@ function AssignmentData({ visibleAssignment, visibleGroup }) {
     const updatedAssignments = assignments.filter((_, i) => i !== index);
     setAssignments(updatedAssignments);
     localStorage.setItem("assignments", JSON.stringify(updatedAssignments));
-    console.log("Updated assignments after deletion:", updatedAssignments);
   };
 
   const handleGroupDeleteItem = (index) => {
+    const groupId = assignmentGroups[index].id;
+
+    const updatedAssignments = assignments.map((assignment) =>
+      assignment.groupId === groupId
+        ? { ...assignment, groupId: "" }
+        : assignment
+    );
+    setAssignments(updatedAssignments);
+    localStorage.setItem("assignments", JSON.stringify(updatedAssignments));
+
     const updatedGroups = assignmentGroups.filter((_, i) => i !== index);
     setAssignmentGroups(updatedGroups);
     localStorage.setItem("assignmentGroups", JSON.stringify(updatedGroups));
-    console.log("Updated groups after deletion:", updatedGroups);
   };
 
   const togglePopup = () => {
@@ -103,49 +111,46 @@ function AssignmentData({ visibleAssignment, visibleGroup }) {
     }
   };
 
-  const handleDrop = (data) => {
+  const handleDrop = (data, targetGroupId) => {
     const { assignment, index } = JSON.parse(data.assignment);
-    const droppedGroupId = assignment.groupId;
-    const updatedAssignments = assignments.filter((_, i) => i !== index);
-    const updatedGroups = assignmentGroups
-      .map((group) => {
-        if (group.id === droppedGroupId) {
-          return {
-            ...group,
-            assignments: [...group.assignments, assignment],
-          };
-        }
-        return group;
-      })
-      .map((group) => {
-        group.assignments.forEach((a, idx) => {
-          if (idx === index) {
-            a.assignmentGroup = group.assignmentGroup;
-          }
-        });
-        return group;
-      });
+    const updatedAssignments = assignments.map((a, idx) =>
+      idx === index ? { ...a, groupId: targetGroupId } : a
+    );
 
     setAssignments(updatedAssignments);
-    setAssignmentGroups(updatedGroups);
-
     localStorage.setItem("assignments", JSON.stringify(updatedAssignments));
-    localStorage.setItem("assignmentGroups", JSON.stringify(updatedGroups));
-
-    console.log("Assignments after drop:", updatedAssignments);
-    console.log("Groups after drop:", updatedGroups);
   };
 
   return (
     <div className="flex flex-col gap-4">
+      {assignments.map((assignment, idx) =>
+        assignment.groupId ? (
+          <></>
+        ) : (
+          <Card key={assignment.id}>
+            <CardContent>
+              <DraggableAssignmentCard
+                assignment={assignment}
+                index={idx}
+                handleEditItem={handleEditItem}
+                handleDeleteItem={handleDeleteItem}
+              />
+            </CardContent>
+          </Card>
+        )
+      )}
       {assignmentGroups.map((group, index) => (
-        <Droppable key={group.id} types={["assignment"]} onDrop={handleDrop}>
+        <Droppable
+          key={group.id}
+          types={["assignment"]}
+          onDrop={(data) => handleDrop(data, group.id)}
+        >
           <Card>
             <div className="flex justify-between items-center p-4 h-20 bg-[#E0E0E0] rounded-t-lg">
               <div className="flex gap-2">
                 <div className="flex">
                   {groupVisibility[group.id] ? (
-                    <ChevronDown 
+                    <ChevronDown
                       onClick={() => toggleGroupVisibility(group.id)}
                     />
                   ) : (
@@ -208,15 +213,22 @@ function AssignmentData({ visibleAssignment, visibleGroup }) {
             </div>
             {groupVisibility[group.id] && (
               <CardContent>
-                {assignments.map((assignment, idx) => (
-                  <DraggableAssignmentCard
-                    key={assignment.id}
-                    assignment={assignment}
-                    index={idx}
-                    handleEditItem={handleEditItem}
-                    handleDeleteItem={handleDeleteItem}
-                  />
-                ))}
+                {assignments
+                  .filter((assignment) => assignment.groupId === group.id)
+                  .map((assignment) => {
+                    const originalIndex = assignments.findIndex(
+                      (a) => a.id === assignment.id
+                    );
+                    return (
+                      <DraggableAssignmentCard
+                        key={assignment.id}
+                        assignment={assignment}
+                        index={originalIndex}
+                        handleEditItem={handleEditItem}
+                        handleDeleteItem={handleDeleteItem}
+                      />
+                    );
+                  })}
               </CardContent>
             )}
           </Card>
@@ -249,4 +261,3 @@ function AssignmentData({ visibleAssignment, visibleGroup }) {
 }
 
 export default AssignmentData;
-  

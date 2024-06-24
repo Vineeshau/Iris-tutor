@@ -3,9 +3,11 @@ import { z } from "zod";
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
 export const addModuleSchema = z.object({
+  moduleId: z.string().optional(),
   moduleName: z.string().min(2, {
     message: "Please enter the valid module name.",
   }),
+  lockUntil: z.boolean().optional(),
   date: z
     .string()
     .refine((val) => dateRegex.test(val) && !isNaN(new Date(val).getTime()), {
@@ -43,6 +45,7 @@ export const addAssignmentSchema = z.object({
   groupAssignment: z.boolean(),
   peerReview: z.boolean(),
   assignTo: z.string(),
+  groupId: z.string().optional(),
   dueDate: z
     .string()
     .nonempty("Due date is required")

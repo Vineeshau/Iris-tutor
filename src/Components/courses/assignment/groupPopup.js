@@ -15,7 +15,6 @@ import { useForm } from "react-hook-form";
 import { groupSchema } from "../../../schemas/coursesSchema";
 
 function GroupPopup({ popUp, currentGroup, isOpen }) {
-  console.log(popUp)
   const form = useForm({
     resolver: zodResolver(groupSchema),
     mode: "onBlur",
@@ -33,7 +32,7 @@ function GroupPopup({ popUp, currentGroup, isOpen }) {
         grp.id === currentGroup.id ? { ...grp, assignmentGroup: data.assignmentGroup } : grp
       );
     } else {
-      existingGroups.push({ id: Date.now(), assignmentGroup: data.assignmentGroup });
+      existingGroups.push({ id: Date.now().toString(), assignmentGroup: data.assignmentGroup });
     }
 
     localStorage.setItem("assignmentGroups", JSON.stringify(existingGroups));
