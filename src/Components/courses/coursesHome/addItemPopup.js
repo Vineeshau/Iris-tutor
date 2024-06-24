@@ -1,8 +1,6 @@
-"use client";
-
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/Components/ui/button";
-import { NotebookPen } from "lucide-react";
+import { NotebookPen, X } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -37,19 +35,30 @@ const dropdownItems = [
   },
 ];
 
-function AddItemPopup({ popUp, onAddItem, initialValues }) {
+function AddItemPopup({ popUp, onAddItem, initialValues, moduleId }) {
   const form = useForm({
     resolver: zodResolver(addItemSchema),
     mode: "onBlur",
-    defaultValues: initialValues || {
+    defaultValues: {
       assignmentType: "",
       assignmentDescription: "",
     },
   });
 
+  useEffect(() => {
+    if (initialValues) {
+      form.reset(initialValues);
+    }
+  }, [initialValues, form]);
+
   const onSubmit = (data) => {
-    console.log(data);
-    onAddItem(data);
+    const itemData = {
+      ...data,
+      moduleId: moduleId,
+      id: initialValues ? initialValues.id : Date.now().toString(),
+    };
+
+    onAddItem(itemData);
     form.reset({
       assignmentType: "",
       assignmentDescription: "",
@@ -60,13 +69,14 @@ function AddItemPopup({ popUp, onAddItem, initialValues }) {
   return (
     <div>
       <div className="flex justify-between p-4 lg:p-8">
-        <p className="text-xl lg:text-3xl">Add Item to how does HTTP work?</p>
+        <p className="text-xl lg:text-3xl">{initialValues ? "Edit Item" : "Add Item"}</p>
+        <X className="cursor-pointer" onClick={popUp} />
       </div>
       <hr />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6 mt-6 flex flex-col items-center px-4 lg:px-8"
+          className="mt-6 flex flex-col items-center px-4 lg:px-8"
         >
           <div className="flex flex-col gap-4 w-full lg:w-[594px]">
             <FormField
@@ -99,8 +109,7 @@ function AddItemPopup({ popUp, onAddItem, initialValues }) {
                             <option
                               disabled
                               className="bg-[#CBD5E1] cursor-default"
-                            >
-                            </option>
+                            ></option>
                             {dropdownGroup.external.map((item, itemIndex) => (
                               <option
                                 key={item.item + itemIndex}

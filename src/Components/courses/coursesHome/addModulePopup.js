@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import { Button } from "@/Components/ui/button";
 import { X } from "lucide-react";
 import {
@@ -15,7 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { addModuleSchema } from "../../../schemas/coursesSchema";
 
-function AddModulePopup({ popUp, onSuccess }) {
+function AddModulePopup({ popUp, onAddModule, initialValues }) {
   const form = useForm({
     resolver: zodResolver(addModuleSchema),
     mode: "onBlur",
@@ -23,18 +25,37 @@ function AddModulePopup({ popUp, onSuccess }) {
       moduleName: "",
       lockUntil: false,
       date: "",
+      ...initialValues,
     },
   });
 
+  useEffect(() => {
+    if (initialValues) {
+      form.reset({
+        ...form.getValues(),
+        ...initialValues,
+      });
+    }
+  }, [initialValues, form]);
+
   const onSubmit = (data) => {
-    const storedModules =
-      JSON.parse(localStorage.getItem("courseModules")) || {};
-    const newModuleName = data.moduleName;
-    storedModules[newModuleName] = {
-      lockUntil: data.lockUntil,
-      date: data.date,
+    const id = initialValues?.id || Date.now().toString(); 
+    const updatedData = {
+      ...data,
+      id,
     };
-    localStorage.setItem("courseModules", JSON.stringify(storedModules));
+
+    let storedModules = JSON.parse(localStorage.getItem("HomeModuleData")) || [];
+
+    if (initialValues) {
+      storedModules = storedModules.map((module) =>
+        module.id === initialValues.id ? updatedData : module
+      );
+    } else {
+      storedModules.push(updatedData);
+    }
+
+    localStorage.setItem("HomeModuleData", JSON.stringify(storedModules));
 
     form.reset({
       moduleName: "",
@@ -42,13 +63,13 @@ function AddModulePopup({ popUp, onSuccess }) {
       date: "",
     });
 
-    onSuccess(newModuleName);
+    popUp();
   };
 
   return (
     <div className="w-full lg:w-[784px] card mx-auto my-4 overflow-hidden">
       <div className="flex justify-between p-4 lg:p-8">
-        <p className="text-xl lg:text-3xl">Add Module</p>
+        <p className="text-xl lg:text-3xl">{initialValues ? "Edit Module" : "Add Module"}</p>
         <X className="cursor-pointer" onClick={popUp} />
       </div>
       <hr />
@@ -109,7 +130,7 @@ function AddModulePopup({ popUp, onSuccess }) {
                   <FormControl>
                     <input
                       type="date"
-                      data-cy="moduleName-input"
+                      data-cy="date-input"
                       placeholder=""
                       className="p-2 lg:p-4 border rounded-xl border-[#8e939d] w-full h-[40px]"
                       {...field}
@@ -134,7 +155,7 @@ function AddModulePopup({ popUp, onSuccess }) {
               type="submit"
               className="w-full lg:w-auto rounded border-none text-sm text-white bg-blue-600"
             >
-              Add Module
+              {initialValues ? "Update Module" : "Add Module"}
             </Button>
           </div>
         </form>

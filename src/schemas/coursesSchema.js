@@ -3,7 +3,7 @@ import { z } from "zod";
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
 export const addModuleSchema = z.object({
-  moduleId: z.string().optional(),
+  id: z.string().optional(),
   moduleName: z.string().min(2, {
     message: "Please enter the valid module name.",
   }),

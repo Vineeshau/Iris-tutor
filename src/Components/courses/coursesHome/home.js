@@ -20,15 +20,11 @@ function Home() {
   const [isSuccessVisible, setIsSuccessVisible] = useState(false);
   const [moduleName, setModuleName] = useState("");
 
-  // Use useEffect to set moduleName from localStorage
   useEffect(() => {
-    const storedModules = localStorage.getItem("courseModules");
-    if (storedModules) {
-      const courseModules = JSON.parse(storedModules);
-      if (courseModules.length > 0) {
-        setModuleName(courseModules[0].name); // Assuming courseModules is an array of objects with a 'name' property
-      }
-    }
+    const storedModules = JSON.parse(localStorage.getItem("HomeModuleData")) || {};
+    if (Object.keys(storedModules).length > 0) {
+      setIsSuccessVisible(true);
+    } 
   }, []);
 
   const togglePopup = () => {
@@ -61,8 +57,8 @@ function Home() {
         </Button>
       </div>
       <div className="flex-grow">
-        {moduleName ? (
-          <AddModuleSuccess moduleName={moduleName} visible={isPopupVisible}/>
+        {isSuccessVisible ? (
+          <AddModuleSuccess visible={isPopupVisible} />
         ) : (
           <div className="flex flex-col items-center py-10">
             <div className="flex flex-col justify-center items-center w-full md:w-[334px] h-[275px] border-2 border-dotted rounded-2xl border-[#2C80B7] cursor-pointer">
