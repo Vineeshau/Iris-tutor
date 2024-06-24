@@ -14,6 +14,7 @@ const PopUp = dynamic(() => import("./popUp"), { ssr: false });
 const Assignment = dynamic(() => import("./assignment/assignment"), {
   ssr: false,
 });
+const Discussion = dynamic(() => import("./discussion/discussion"), { ssr: false });
 
 function Courses() {
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -41,7 +42,7 @@ function Courses() {
       case "Assignment":
         return <Assignment />;
       case "Discussion":
-      // return <Discussion />;
+      return <Discussion />;
       case "Grade":
       // return <Grade />;
       case "People":

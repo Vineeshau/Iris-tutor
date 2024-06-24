@@ -143,7 +143,7 @@ export default function Page() {
                             </span>
                           </div>
                         </Link>
-                        <Link href="" passHref>
+                        <Link href="/dashboard/courses" passHref onClick={() => localStorage.setItem("linkedItem", "Discussion")}>
                           <div className="text-blue-500 hover:underline">
                             <span className="material-icons">
                               <MessageSquare />
