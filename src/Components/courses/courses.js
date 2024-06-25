@@ -11,10 +11,13 @@ const Dashboard = dynamic(() => import("../../app/dashboard/page"), {
   ssr: false,
 });
 const PopUp = dynamic(() => import("./popUp"), { ssr: false });
+const PublishedCourses = dynamic(() => import("./publishedCourses"), { ssr: false });
+
 const Assignment = dynamic(() => import("./assignment/assignment"), {
   ssr: false,
 });
 const Discussion = dynamic(() => import("./discussion/discussion"), { ssr: false });
+
 
 function Courses() {
   const [selectedComponent, setSelectedComponent] = useState(null);
@@ -70,12 +73,18 @@ function Courses() {
 
   return (
     <div className="relative">
-      {selectedComponent === null && (
+      {/* {selectedComponent === null && (
         <>
           <Dashboard />
           <PopUp onLinkClick={handleLinkClick} />
         </>
+      )} */}
+      {selectedComponent === null && (
+        <>
+          <PublishedCourses onLinkClick={handleLinkClick}/>
+        </>
       )}
+      
       {selectedComponent !== null && (
         <div className="py-10">
           <SelectItems onValueChange={handleValueChange} selectedComponent={selectedComponent}/>
