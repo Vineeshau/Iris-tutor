@@ -20,8 +20,6 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { ScrollArea } from "@/Components/ui/scroll-area";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const animatedComponents = makeAnimated();
 const options = [
@@ -89,7 +87,6 @@ function AnnouncementPopup({ popUp, onSuccess, editData, isEditMode }) {
     form.setValue("options", JSON.stringify(newCheckboxOptions));
   };
   const onSubmit = (data) => {
-    toast("Wow so easy!");
     const announcements =
       JSON.parse(localStorage.getItem("announcements")) || [];
 
@@ -303,7 +300,6 @@ function AnnouncementPopup({ popUp, onSuccess, editData, isEditMode }) {
           </form>
         </Form>
       </ScrollArea>
-      <ToastContainer />
     </div>
   );
 }

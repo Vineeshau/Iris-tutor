@@ -28,7 +28,7 @@ import GroupPopup from "./groupPopup";
 import DraggableAssignmentCard from "./draggableAssignmentCard";
 import { Draggable, Droppable } from "react-drag-and-drop";
 
-function AssignmentData({ visibleAssignment, visibleGroup }) {
+function AssignmentData({ visibleAssignment, visibleGroup, toggleDelete }) {
   const [assignments, setAssignments] = useState([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [currentAssignment, setCurrentAssignment] = useState(null);
@@ -77,6 +77,7 @@ function AssignmentData({ visibleAssignment, visibleGroup }) {
     const updatedAssignments = assignments.filter((_, i) => i !== index);
     setAssignments(updatedAssignments);
     localStorage.setItem("assignments", JSON.stringify(updatedAssignments));
+    toggleDelete();
   };
 
   const handleGroupDeleteItem = (index) => {
@@ -93,6 +94,7 @@ function AssignmentData({ visibleAssignment, visibleGroup }) {
     const updatedGroups = assignmentGroups.filter((_, i) => i !== index);
     setAssignmentGroups(updatedGroups);
     localStorage.setItem("assignmentGroups", JSON.stringify(updatedGroups));
+    toggleDelete();
   };
 
   const togglePopup = () => {

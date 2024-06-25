@@ -16,10 +16,39 @@ import AssignmentData from "./assignmentData";
 import AssignmentPopup from "./assignmentPopup";
 import GroupPopup from "./groupPopup";
 import { Input } from "@/Components/ui/input";
+import Image from "next/image";
 
 function Assignment() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [groupPopup, setGroupPopup] = useState(false);
+  const [isSuccessVisible, setIsSuccessVisible] = useState(false);
+  const [isPopUpDelete, setIsPopUpDelete] = useState(false);
+
+  useEffect(() => {
+    const storedAssignments =
+      JSON.parse(localStorage.getItem("assignments")) || {};
+    const storedAssignmentsGroups =
+      JSON.parse(localStorage.getItem("assignmentGroups")) || {};
+    if (
+      Object.keys(storedAssignments).length > 0 ||
+      Object.keys(storedAssignmentsGroups).length > 0
+    ) {
+      setIsSuccessVisible(true);
+    }
+  }, [isPopupVisible, groupPopup]);
+
+  useEffect(() => {
+    const storedAssignments =
+      JSON.parse(localStorage.getItem("assignments")) || {};
+    const storedAssignmentsGroups =
+      JSON.parse(localStorage.getItem("assignmentGroups")) || {};
+    if (
+      Object.keys(storedAssignments).length === 0 ||
+      Object.keys(storedAssignmentsGroups).length === 0
+    ) {
+      setIsSuccessVisible(false);
+    }
+  }, [isPopUpDelete]);
 
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
@@ -28,6 +57,10 @@ function Assignment() {
   const toggleGroupPopup = () => {
     setGroupPopup(!groupPopup);
   };
+
+  const toggleDelete = () => {
+    setIsPopUpDelete(!isPopUpDelete);
+  }
 
   return (
     <div className="flex flex-col h-screen relative px-4 md:px-20 lg:px-10 py-20">
@@ -68,10 +101,22 @@ function Assignment() {
       </div>
       <div className="flex-grow pb-5">
         <div>
+          {isSuccessVisible ? (
             <AssignmentData
               visibleAssignment={isPopupVisible}
               visibleGroup={groupPopup}
+              toggleDelete={toggleDelete}
             />
+          ) : (
+            <div className="flex flex-col items-center py-10">
+              <Image
+                src="/Work_in_progress.svg"
+                width={329}
+                height={329}
+                alt="image"
+              />
+            </div>
+          )}
         </div>
       </div>
       <div className="mb-5">

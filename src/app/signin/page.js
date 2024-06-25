@@ -11,7 +11,6 @@ import { Button } from "@/Components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -19,7 +18,6 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -27,6 +25,8 @@ import {
 } from "@/Components/ui/form";
 import { Input } from "@/Components/ui/input";
 import { signinSchema } from "../../schemas/validate";
+import { Toaster } from "@/Components/ui/sonner";
+import { toast } from "sonner";
 
 function Page() {
   const form = useForm({
@@ -45,10 +45,19 @@ function Page() {
   };
 
   const onSubmit = (data) => {
-    form.reset({
-      email: "",
-      password: "",
-    });
+    if (
+      data.email === process.env.NEXT_PUBLIC_EMAIL &&
+      data.password === process.env.NEXT_PUBLIC_PASSWORD
+    ) {
+      form.reset({
+        email: "",
+        password: "",
+      });
+      toast("Login Successful...");
+      window.location.href = "/dashboard";
+    } else {
+      toast("Login Failed!!!");
+    }
   };
 
   return (
@@ -89,6 +98,7 @@ function Page() {
                       <FormControl>
                         <Input
                           type="email"
+                          data-cy="email-input"
                           placeholder="Your Email"
                           className="p-4 rounded-xl border-[#8e939d]"
                           {...field}
@@ -109,6 +119,7 @@ function Page() {
                       <FormControl>
                         <Input
                           type={showPassword ? "text" : "password"}
+                          data-cy="password-input"
                           placeholder="Password"
                           className="p-4 rounded-xl border-[#8e939d]"
                           {...field}
@@ -148,6 +159,7 @@ function Page() {
           </CardFooter>
         </Card>
       </div>
+      <Toaster />
     </div>
   );
 }
