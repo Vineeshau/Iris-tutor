@@ -19,17 +19,29 @@ function Home() {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isSuccessVisible, setIsSuccessVisible] = useState(false);
   const [moduleName, setModuleName] = useState("");
+  const [isPopUpDelete, setIsPopUpDelete] = useState(false);
 
   useEffect(() => {
     const storedModules = JSON.parse(localStorage.getItem("HomeModuleData")) || {};
     if (Object.keys(storedModules).length > 0) {
       setIsSuccessVisible(true);
-    } 
-  }, []);
+    }
+  }, [isPopupVisible]);
+
+  useEffect(() => {
+    const storedModules = JSON.parse(localStorage.getItem("HomeModuleData")) || {};
+    if (Object.keys(storedModules).length === 0) {
+      setIsSuccessVisible(false);
+    }
+  }, [isPopUpDelete]);
 
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
   };
+
+  const toggleDelete = () => {
+    setIsPopUpDelete(!isPopUpDelete);
+  }
 
   const handleSuccess = (name) => {
     setModuleName(name);
@@ -58,7 +70,7 @@ function Home() {
       </div>
       <div className="flex-grow">
         {isSuccessVisible ? (
-          <AddModuleSuccess visible={isPopupVisible} />
+          <AddModuleSuccess visible={isPopupVisible} toggleDelete={toggleDelete}/>
         ) : (
           <div className="flex flex-col items-center py-10">
             <div className="flex flex-col justify-center items-center w-full md:w-[334px] h-[275px] border-2 border-dotted rounded-2xl border-[#2C80B7] cursor-pointer">

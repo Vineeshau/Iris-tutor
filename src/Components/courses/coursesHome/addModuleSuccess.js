@@ -26,7 +26,7 @@ import { Button } from "@/Components/ui/button";
 import DraggableHomeCard from "./draggableHomeCard";
 import { Draggable, Droppable } from "react-drag-and-drop";
 
-function AddModuleSuccess({ visible }) {
+function AddModuleSuccess({ visible, toggleDelete }) {
   const [modules, setModules] = useState([]);
   const [items, setItems] = useState([]);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -78,6 +78,7 @@ function AddModuleSuccess({ visible }) {
     const updatedItems = items.filter((item) => item.moduleId !== moduleId);
     setItems(updatedItems);
     localStorage.setItem("HomeItemData", JSON.stringify(updatedItems));
+    toggleDelete();
   };
 
   const handleEditModule = (moduleId) => {

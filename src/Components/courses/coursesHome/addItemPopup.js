@@ -69,7 +69,9 @@ function AddItemPopup({ popUp, onAddItem, initialValues, moduleId }) {
   return (
     <div>
       <div className="flex justify-between p-4 lg:p-8">
-        <p className="text-xl lg:text-3xl">{initialValues ? "Edit Item" : "Add Item"}</p>
+        <p className="text-xl lg:text-3xl">
+          {initialValues ? "Edit Item" : "Add Item"}
+        </p>
         <X className="cursor-pointer" onClick={popUp} />
       </div>
       <hr />
@@ -92,6 +94,12 @@ function AddItemPopup({ popUp, onAddItem, initialValues, moduleId }) {
                       <select
                         {...field}
                         className="w-full h-[40px] rounded-lg border border-[#CBD5E1] bg-white"
+                        defaultValue={
+                          dropdownItems.length > 0 &&
+                          dropdownItems[0].list.length > 0
+                            ? dropdownItems[0].list[0].title
+                            : ""
+                        }
                       >
                         {dropdownItems.map((dropdownGroup, groupIndex) => (
                           <optgroup
