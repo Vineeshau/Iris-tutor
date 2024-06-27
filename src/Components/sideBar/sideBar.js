@@ -39,7 +39,7 @@ const menuItems = [
       },
       {
         title: "Dashboard",
-        path: "/dashboard",
+        path: "https://demo.iristutor.com/",
         icon: <LayoutDashboard />,
       },
       {

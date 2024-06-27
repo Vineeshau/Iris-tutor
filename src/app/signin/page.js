@@ -27,6 +27,7 @@ import { Input } from "@/Components/ui/input";
 import { signinSchema } from "../../schemas/validate";
 import { Toaster } from "@/Components/ui/sonner";
 import { toast } from "sonner";
+import Cookies from 'js-cookie'
 
 function Page() {
   const form = useForm({
@@ -44,17 +45,23 @@ function Page() {
     setShowPassword(!showPassword);
   };
 
+  Cookies.set('email', 'admin@chordify.com')
+  Cookies.set('password', 'admin@123')
+
+  const email = Cookies.get('email');
+  const password = Cookies.get('password');
+
   const onSubmit = (data) => {
     if (
-      data.email === process.env.NEXT_PUBLIC_EMAIL &&
-      data.password === process.env.NEXT_PUBLIC_PASSWORD
+      data.email === email &&
+      data.password === password
     ) {
       form.reset({
         email: "",
         password: "",
       });
       toast("Login Successful...");
-      window.location.href = "/dashboard";
+      window.location.href = "https://demo.iristutor.com/";
     } else {
       toast("Login Failed!!!");
     }
