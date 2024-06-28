@@ -15,29 +15,39 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
   AlertDialog,
-  AlertDialogTrigger,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogAction,
-  AlertDialogCancel,
 } from "@/Components/ui/alert-dialog";
-
+ 
 const newCourseSchema = z.object({
-  coursename: z.string().min(1, { message: "Course Name is required" }),
+  id: z.string(),
+  coursename: z
+    .string()
+    .min(1, { message: "Course Name is required" })
+    .refine((name) => /^[A-Z].*/.test(name), {
+      message: "Course Name must start with a capital letter",
+    }),
   contentlicense: z.string().min(1, { message: "Content License is required" }),
   publish: z.boolean().optional(),
   image: z.any().optional(),
   duration: z.enum(["2 hours", "3 hours", "4 hours", "5 hours", "6 hours"]),
 });
-
+ 
 function StartNewCourseDialog({ popUp }) {
   const [showAlert, setShowAlert] = useState(false);
+ 
+  const generateUniqueId = () => {
+    return Date.now().toString();
+  };
+ 
   const newcourse = useForm({
     resolver: zodResolver(newCourseSchema),
     defaultValues: {
+      id: generateUniqueId(),
       coursename: "",
       contentlicense: "",
       publish: false,
@@ -45,7 +55,7 @@ function StartNewCourseDialog({ popUp }) {
       duration: "",
     },
   });
-
+ 
   const onSubmit = (data) => {
     if (data.image && data.image.length > 0) {
       const file = data.image[0];
@@ -62,7 +72,7 @@ function StartNewCourseDialog({ popUp }) {
       saveCourse(data);
     }
   };
-
+ 
   const saveCourse = (data) => {
     let courses = JSON.parse(localStorage.getItem("courses")) || [];
     courses.push(data);
@@ -70,12 +80,12 @@ function StartNewCourseDialog({ popUp }) {
     newcourse.reset();
     setShowAlert(true);
   };
-
+ 
   const closeAlert = () => {
     setShowAlert(false);
     popUp();
   };
-
+ 
   return (
     <div>
       <div className="flex justify-between p-4 lg:p-8">
@@ -111,7 +121,7 @@ function StartNewCourseDialog({ popUp }) {
                 </FormItem>
               )}
             />
-
+ 
             <FormField
               control={newcourse.control}
               name="contentlicense"
@@ -155,7 +165,7 @@ function StartNewCourseDialog({ popUp }) {
                 </FormItem>
               )}
             />
-
+ 
             <FormField
               control={newcourse.control}
               name="duration"
@@ -182,7 +192,7 @@ function StartNewCourseDialog({ popUp }) {
                 </FormItem>
               )}
             />
-
+ 
             <FormField
               control={newcourse.control}
               name="publish"
@@ -229,7 +239,7 @@ function StartNewCourseDialog({ popUp }) {
           </div>
         </form>
       </Form>
-
+ 
       {showAlert && (
         <AlertDialog open={showAlert} onOpenChange={setShowAlert}>
           <AlertDialogContent>
@@ -248,5 +258,5 @@ function StartNewCourseDialog({ popUp }) {
     </div>
   );
 }
-
+ 
 export default StartNewCourseDialog;
