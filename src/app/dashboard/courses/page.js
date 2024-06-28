@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/Components/ui/card";
@@ -64,7 +65,7 @@ function PublishedCourses() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 max-w-7xl w-full mx-auto mt-8">
         {activeTab === "published" &&
           publishedCourses.map((course, index) => (
-            <Link href={`/dashboard/courses/${course.id}`}>
+            <Link href={`/dashboard/courses/${course.id}`} key={course.id}>
               <Card
                 key={index}
                 className="border rounded-2xl shadow-2xl w-full cursor-pointer"
