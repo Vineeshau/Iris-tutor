@@ -1,0 +1,83 @@
+[
+    {
+      "name": "John Doe",
+      "courseName": "React js",
+      "status": "Completed",
+      "marksScored": 85,
+      "grade": "A",
+      "totalMarks": 100
+    },
+    {
+      "name": "Jane Smith",
+      "courseName": "Next js",
+      "status": "Pending",
+      "marksScored": 78,
+      "grade": "B",
+      "totalMarks": 100
+    },
+    {
+      "name": "Alice Johnson",
+      "courseName": "Python",
+      "status": "Completed",
+      "marksScored": 92,
+      "grade": "A",
+      "totalMarks": 100
+    },
+    {
+      "name": "Bob Brown",
+      "courseName": "Ruby on Rails",
+      "status": "Completed",
+      "marksScored": 88,
+      "grade": "B",
+      "totalMarks": 100
+    },
+    {
+      "name": "Charlie Davis",
+      "courseName": "Javascript",
+      "status": "Pending",
+      "marksScored": 76,
+      "grade": "C",
+      "totalMarks": 100
+    },
+    {
+      "name": "Diana Evans",
+      "courseName": "Flutter",
+      "status": "Completed",
+      "marksScored": 84,
+      "grade": "B",
+      "totalMarks": 100
+    },
+    {
+      "name": "Ethan Harris",
+      "courseName": "Big Data",
+      "status": "Pending",
+      "marksScored": 81,
+      "grade": "B",
+      "totalMarks": 100
+    },
+    {
+      "name": "Fiona Clark",
+      "courseName": "Data Science",
+      "status": "Completed",
+      "marksScored": 89,
+      "grade": "A",
+      "totalMarks": 100
+    },
+    {
+      "name": "George White",
+      "courseName": "Machine Learning",
+      "status": "Completed",
+      "marksScored": 93,
+      "grade": "A",
+      "totalMarks": 100
+    },
+    {
+      "name": "Helen King",
+      "courseName": "React js",
+      "status": "Pending",
+      "marksScored": 77,
+      "grade": "B",
+      "totalMarks": 100
+    }
+  ]
+  

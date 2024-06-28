@@ -1,0 +1,6 @@
+[
+    { "id": 1, "coursename": "Dummy Course 1", "duration": "2 months", "image": "/mern.jpg" },
+    { "id": 2, "coursename": "Dummy Course 2", "duration": "1 month", "image": "/mern.jpg" },
+    { "id": 3, "coursename": "Dummy Course 3", "duration": "3 months", "image": "/mern.jpg" }
+  ]
+  

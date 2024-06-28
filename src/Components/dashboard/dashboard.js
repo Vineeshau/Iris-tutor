@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { Card, CardContent } from "@/Components/ui/card";
 import cardData from "../../data/dashboard_courses.json";
 import {
@@ -15,14 +16,18 @@ import {
   NotebookPen,
   Files,
   CalendarDays,
+  X,
 } from "lucide-react";
 import New from "@/Components/dashboard/startNewCourseDialog";
+import ModuleCreationComponent from "@/Components/courses/module/addModule"; 
+import { toast } from "sonner";
 
 function Dashboard() {
   const [activeButton, setActiveButton] = useState("first");
   const { publishedDatas, unpublishedDatas } = cardData;
   const [storedCourses, setStoredCourses] = useState([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [showModuleCreation, setShowModuleCreation] = useState(false);
 
   useEffect(() => {
     const courses = JSON.parse(localStorage.getItem("courses")) || [];
@@ -37,11 +42,33 @@ function Dashboard() {
     setIsDialogOpen(false);
   };
 
-  const handlePublish = (index) => {};
+  const handlePublish = (index) => {
+    const courses = [...storedCourses];
+    const course = courses[index];
+    const homeModuleData =
+      JSON.parse(localStorage.getItem("HomeModuleData")) || [];
+
+    const moduleExists = homeModuleData.some(
+      (module) => module.courseId === course.id
+    );
+
+    if (moduleExists) {
+      course.publish = true;
+      localStorage.setItem("courses", JSON.stringify(courses));
+      setStoredCourses(courses);
+    } else {
+      toast("Create a module first!");
+      setShowModuleCreation(!showModuleCreation);
+    }
+  };
 
   const filteredCourses = storedCourses.filter((course) =>
     activeButton === "first" ? course.publish : !course.publish
   );
+
+  const moduleClose = () => {
+    setShowModuleCreation(!showModuleCreation);
+  };
 
   return (
     <div className="bg-white-100 min-h-screen flex flex-col">
@@ -255,6 +282,16 @@ function Dashboard() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="relative bg-white shadow-2xl rounded-2xl">
             {isDialogOpen && <New popUp={openDialog} />}
+          </div>
+        </div>
+      )}
+      {showModuleCreation && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="relative bg-white shadow-2xl rounded-2xl h-screen w-[1000px]">
+            <div className="flex justify-end p-5">
+              <X onClick={moduleClose} className="cursor-pointer"/>
+            </div>
+            <ModuleCreationComponent />
           </div>
         </div>
       )}
