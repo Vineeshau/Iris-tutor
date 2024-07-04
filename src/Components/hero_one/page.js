@@ -30,7 +30,6 @@ function Page({ onGetStarted }) {
           <span className="font-bold text-6xl">IrisTutor</span>{" "}
           <span style={{ color: "#921E35" }} className="font-bold text-6xl">@Chordify</span>
         </p>
-        text-black text-5xl
         <p className="text-black text-2xl font-sm">Your Gateway to Infinite Learning!</p>
         <div className="flex gap-4">
           <button
