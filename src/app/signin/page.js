@@ -11,6 +11,7 @@ import { Button } from "@/Components/ui/button";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -18,6 +19,7 @@ import {
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,9 +27,6 @@ import {
 } from "@/Components/ui/form";
 import { Input } from "@/Components/ui/input";
 import { signinSchema } from "../../schemas/validate";
-import { Toaster } from "@/Components/ui/sonner";
-import { toast } from "sonner";
-import Cookies from 'js-cookie'
 
 function Page() {
   const form = useForm({
@@ -45,30 +44,18 @@ function Page() {
     setShowPassword(!showPassword);
   };
 
-  Cookies.set('email', 'admin@chordify.com')
-  Cookies.set('password', 'admin@123')
-
-  const email = Cookies.get('email');
-  const password = Cookies.get('password');
-
   const onSubmit = (data) => {
-    if (
-      data.email === email &&
-      data.password === password
-    ) {
-      form.reset({
-        email: "",
-        password: "",
-      });
-      toast("Login Successful...");
-      window.location.href = "https://demo.iristutor.com/";
-    } else {
-      toast("Login Failed!!!");
-    }
+    form.reset({
+      email: "",
+      password: "",
+    });
   };
 
   return (
-    <div className="py-20 w-full">
+    <div
+      className="py-20 w-full"
+      style={{ backgroundColor: "rgba(246, 212, 160, 0.4)" }}
+    >
       <div className="flex justify-center">
         <Card className="flex flex-col border-none shadow-2xl items-center rounded-2xl w-96 lg:w-[450px] shadow-2x gap-6">
           <CardHeader>
@@ -149,7 +136,7 @@ function Page() {
                 />
                 <Button
                   type="submit"
-                  className="w-full lg:w-96 rounded border-none text-sm text-white"
+                  className="w-full lg:w-96 rounded border-none text-sm text-white bg-blue-500"
                 >
                   Sign In
                 </Button>
@@ -166,7 +153,6 @@ function Page() {
           </CardFooter>
         </Card>
       </div>
-      <Toaster />
     </div>
   );
 }

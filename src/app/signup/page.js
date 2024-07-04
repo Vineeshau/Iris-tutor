@@ -54,7 +54,10 @@ function Signup() {
   };
 
   return (
-    <div className="py-20 w-full">
+    <div
+      className="py-20 w-full"
+      style={{ backgroundColor: "rgba(246, 212, 160, 0.4)" }}
+    >
       <div className="flex justify-center">
         <Card className="flex flex-col border-none shadow-2xl items-center rounded-2xl w-96 lg:w-[450px] shadow-2x gap-6">
           <CardHeader>
@@ -66,12 +69,10 @@ function Signup() {
           </CardHeader>
           <CardContent className="flex flex-col gap-4 items-center">
             <p className="text-2xl font-bold text-[#171A1F]">Sign Up</p>
-            <Link href="/">
             <div className="w-full lg:w-96 h-11 rounded-xl border border-[#8e939d] flex justify-center items-center text-lg text-[#171A1F]">
               <FcGoogle />
               Sign up with Google
             </div>
-            </Link>
             <div className="pt-4">
               <hr className="w-full lg:w-96 border-[#ededed]" />
             </div>
@@ -91,6 +92,7 @@ function Signup() {
                       <FormControl>
                         <Input
                           type="text"
+                          data-cy="full-name-input"
                           placeholder="Your full name"
                           className="p-4 rounded-xl border-[#8e939d]"
                           {...field}
@@ -111,6 +113,7 @@ function Signup() {
                       <FormControl>
                         <Input
                           type="email"
+                          data-cy="email-input"
                           placeholder="Your Email"
                           className="p-4 rounded-xl border-[#8e939d]"
                           {...field}
@@ -131,6 +134,7 @@ function Signup() {
                       <FormControl>
                         <Input
                           type={showPassword ? "text" : "password"}
+                          data-cy="password-input"
                           placeholder="Password"
                           className="p-4 rounded-xl border-[#8e939d]"
                           {...field}
@@ -166,7 +170,7 @@ function Signup() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full lg:w-96 rounded border-none text-sm text-white"
+                  className="w-full lg:w-96 rounded border-none text-sm text-white bg-blue-500"
                 >
                   Sign Up
                 </Button>

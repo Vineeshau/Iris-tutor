@@ -1,61 +1,60 @@
-import Link from "next/link";
 import React from "react";
-import { FaArrowRightLong } from "react-icons/fa6";
 import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
-import CourseData from "../../data/courses.json";
- 
+import { FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
+import CourseData from "../../data/courses.json"; // Adjust path as per your project structure
+
 function Page() {
   return (
-    <div>
-      <div className="flex flex-col lg:flex-col items-center justify-center lg:justify-between gap-6 py-20">
-        <div className="flex flex-col items-center gap-6">
-          <p className="text-2xl lg:text-5xl font-bold text-black max-w-xs lg:max-w-none">
-            Sections
-          </p>
-          <p className="text-2xl lg:text-xl font-bold text-black py-8">
-            Link to different sections of your app.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-10 justify-center">
-          {CourseData.map((data, index) => (
-            <Card
-              key={index}
-              className="bg-white shadow-2xl py-4 rounded-2xl border-none w-full h-[550px] flex flex-col"
-            >
-              <CardHeader>
-                <CardTitle className="flex flex-col items-center py-8">
-                  <Image
-                    src={data.imageUrl}
-                    width={224}
-                    height={224}
-                    alt={data.title}
-                    className="w-56 h-56"
-                  />
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col justify-between flex-grow px-8">
-                <div>
-                  <div className="text-sm text-gray-500">
-                    {data.description}
-                  </div>
-                  <p className="text-2xl lg:text-xl font-bold text-black py-10">
-                    {data.title}
-                  </p>
-                </div>
-                <Link href={data.link}>
-                  <div className="text-blue-700 flex items-center mt-auto">
+    <div
+      className="flex flex-col items-center justify-center gap-4 py-20"
+      style={{
+        background:
+          "linear-gradient(135deg, rgba(251, 178, 67, 0.4), rgba(50, 120, 255, 0.2))",
+        minHeight: "100vh", // Ensure the container takes at least the full viewport height
+      }}
+    >
+      <div className="flex flex-col items-center">
+        <p className="text-2xl lg:text-5xl font-bold text-black max-w-xs lg:max-w-none">
+          Why you will love IrisTutor?
+        </p>
+      </div>
+      <div className="grid w-full max-w-screen-xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-10 px-4">
+        {CourseData.map((course, index) => (
+          <div
+            key={index}
+            className="overflow-hidden shadow-lg bg-white rounded-xl w-full md:max-w-sm lg:max-w-md px-6 py-6 flex flex-col justify-between items-center"
+            style={{ margin: "0 auto" }}
+          >
+            {/* First Section: Image */}
+            <div className="flex justify-center items-center h-80 w-full mb-2">
+              <Image
+                src={course.image}
+                width={250}
+                height={300}
+                alt="Course Image"
+                className="rounded-t-xl object-fill"
+              />
+            </div>
+            {/* Second Section: Name and Go To Link */}
+            <div className="flex flex-col justify-between flex-grow w-full gap-4">
+              <div className="px-6 py-4 text-start">
+                <div className="font-bold text-xl mb-2">{course.name}</div>
+              </div>
+              <div className="px-6 pt-4 pb-2 text-start">
+                <Link href="">
+                  <div className="text-blue-700 flex items-start justify-start">
                     <span>GO TO</span>
-                    <FaArrowRightLong className="ml-1" />
+                    <FaArrowRight className="ml-1" />
                   </div>
                 </Link>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
- 
+
 export default Page;

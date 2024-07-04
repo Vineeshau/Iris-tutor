@@ -7,7 +7,7 @@ import Image from "next/image";
 function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div className="w-full px-5 lg:px-10">
+    <div className="w-full">
       <div className="card w-full shadow-xl bg-white px-5 lg:px-10">
         <div className="h-20 lg:h-28 flex flex-row items-center justify-around">
           <div className="w-24 lg:w-auto">

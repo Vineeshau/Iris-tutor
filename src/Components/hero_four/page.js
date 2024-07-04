@@ -1,5 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import testimonials from "@/data/testimonials"; // Adjust path as per your project structure
+import { Card, CardContent } from "@/Components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/Components/ui/carousel";
 
 function Page() {
   return (
@@ -18,60 +27,49 @@ function Page() {
       <div className="flex-1 p-4">
         <div className="px-1 sm:px-20">
           <div className="flex flex-col sm:flex-row">
-            <div className="flex-1 p-4 mb-8 sm:mb-0">
-              <Image
-                src="/morgan.png"
-                width={65}
-                height={50}
-                alt="Image 1"
-                className="mx-auto mb-4"
-              />
-              <p className="text-gray-700 mb-2 text-center">
-              &quot;When you innovate, you make mistakes. It is best to admit them
-                quickly, and get on with improving your other innovations.&quot;
-              </p>
-              <h3 className="text-lg font-semibold mb-2 text-center">
-                Morgan James
-              </h3>
-              <p className="text-gray-700 mb-2 text-center">Co-Founder & CEO</p>
-            </div>
-
-            <div className="flex-1 p-4 mb-8 sm:mb-0">
-              <Image
-                src="/morgan.png"
-                width={65}
-                height={50}
-                alt="Image 2"
-                className="mx-auto mb-4"
-              />
-              <p className="text-gray-700 mb-2 text-center">
-              &quot;Technology is just a tool. In terms of getting the kids working
-                together and motivating them, the teacher is the most
-                important.&quot;
-              </p>
-              <h3 className="text-lg font-semibold mb-2 text-center">
-                John Smith
-              </h3>
-              <p className="text-gray-700 mb-2 text-center">Co-Founder & CTO</p>
-            </div>
-
-            <div className="flex-1 p-4 mb-8 sm:mb-0">
-              <Image
-                src="/morgan.png"
-                width={65}
-                height={50}
-                alt="Image 3"
-                className="mx-auto mb-4"
-              />
-              <p className="text-gray-700 mb-2 text-center">
-              &quot;Design everything on the assumption that people are not
-                heartless or stupid but marvelously capable, given the chance.&quot;
-              </p>
-              <h3 className="text-lg font-semibold mb-2 text-center">
-                Amy Schneider
-              </h3>
-              <p className="text-gray-700 mb-2 text-center">Lead Designer</p>
-            </div>
+            <Carousel
+              opts={{
+                align: "start",
+              }}
+              className="carousel-wrapper"
+              style={{ border: "none" }} // Remove border here if needed
+            >
+              <CarouselContent>
+                {testimonials.map((testimonial) => (
+                  <CarouselItem
+                    key={testimonial.id}
+                    className="md:basis-1/2 lg:basis-1/3"
+                  >
+                    <div className="p-1">
+                      <Card className="border-0 shadow-none">
+                        <CardContent className="flex items-center justify-center p-6">
+                          <div className="flex flex-col items-center">
+                            <Image
+                              src={testimonial.image}
+                              width={65}
+                              height={50}
+                              alt={`Image ${testimonial.id}`}
+                              className="mx-auto mb-4"
+                            />
+                            <p className="text-gray-700 mb-2 text-center">
+                              {testimonial.quote}
+                            </p>
+                            <h3 className="text-lg font-semibold mb-2 text-center">
+                              {testimonial.author}
+                            </h3>
+                            <p className="text-gray-700 mb-2 text-center">
+                              {testimonial.role}
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           </div>
         </div>
       </div>

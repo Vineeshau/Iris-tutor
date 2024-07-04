@@ -79,7 +79,7 @@ function AnnouncementDatas({ onEmpty, isPopupVisible }) {
                     <p className="text-2xl font-bold">{announcement.title}</p>
                     <p className="text-xs">
                       {new Date().toLocaleString()}
-                    </p>
+                    </p>consumerrecipecard-title
                   </div>
                   <p className="text-xs text-[blue]">Email</p>
                   <p>{announcement.postTo}</p>

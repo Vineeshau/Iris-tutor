@@ -1,5 +1,5 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/Components/ui/button";
@@ -13,8 +13,8 @@ import {
 } from "@/Components/ui/form";
 import { Input } from "@/Components/ui/input";
 import { contactusSchema } from "../../schemas/contactusSchema";
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 const ContactUsPage = () => {
   const form = useForm({
@@ -31,7 +31,6 @@ const ContactUsPage = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
     form.reset({
       fullName: "",
       email: "",
@@ -55,12 +54,17 @@ const ContactUsPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-full py-20">
+    <div
+      className="flex justify-center items-center h-full py-20"
+      style={{ backgroundColor: "rgba(246, 212, 160, 0.4)" }}
+    >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <h2 className="text-2xl font-bold text-center">Contact Form</h2>
-          <p className="text-2xl font-normal text-center">Let&apos;s Connect and Explore New Possibilities</p>
-          
+          <p className="text-2xl font-normal text-center">
+            Let&apos;s Connect and Explore New Possibilities
+          </p>
+
           <FormField
             control={form.control}
             name="fullName"
@@ -68,13 +72,18 @@ const ContactUsPage = () => {
               <FormItem>
                 <FormLabel>Full Name *</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your full name" {...field} className="custom-input" />
+                  <Input
+                    placeholder="Enter your full name"
+                    className="custom-input"
+                    data-cy="full-name-input"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="email"
@@ -82,13 +91,19 @@ const ContactUsPage = () => {
               <FormItem>
                 <FormLabel>Email *</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="Enter your email" {...field} className="custom-input" />
+                  <Input
+                    type="email"
+                    data-cy="email-input"
+                    placeholder="Enter your email"
+                    {...field}
+                    className="custom-input"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="phoneNumber"
@@ -97,7 +112,7 @@ const ContactUsPage = () => {
                 <FormLabel>Phone Number *</FormLabel>
                 <FormControl>
                   <PhoneInput
-                    country={'us'}
+                    country={"us"}
                     value={field.value}
                     onChange={(value) => {
                       handleChange(value);
@@ -105,19 +120,23 @@ const ContactUsPage = () => {
                     }}
                     inputProps={{
                       required: true,
-                      className: "w-full border border-gray-300 rounded-md py-1 px-3 focus:outline-none focus:ring focus:ring-blue-200 font-sans",
+                      className:
+                        "w-full border border-gray-300 rounded-md py-1 px-3 focus:outline-none focus:ring focus:ring-blue-200 font-sans",
+                      "data-cy": "phone-input",
                     }}
                     containerStyle={{ marginTop: "8px" }}
-                    placeholder={field.value ? '' : '        Phone number'}
+                    placeholder={field.value ? "" : "        Phone number"}
                   />
                 </FormControl>
                 {!valid && (
-                  <FormMessage name="phoneNumber">Please enter a valid phone number.</FormMessage>
+                  <FormMessage name="phoneNumber">
+                    Please enter a valid phone number.
+                  </FormMessage>
                 )}
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="companyName"
@@ -125,13 +144,18 @@ const ContactUsPage = () => {
               <FormItem>
                 <FormLabel>Your Company Name *</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your company name" {...field} className="custom-input" />
+                  <Input
+                    placeholder="Enter your company name"
+                    data-cy="company-name-input"
+                    {...field}
+                    className="custom-input"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="companySize"
@@ -143,6 +167,7 @@ const ContactUsPage = () => {
                     <select
                       {...field}
                       className="w-full border border-gray-300 rounded-md py-1 px-3 focus:outline-none focus:ring focus:ring-blue-200 font-sans"
+                      data-cy="company-size-select" // Add your data-cy attribute here
                     >
                       <option value="">Select Company Size</option>
                       <option value="11-50">11 to 50</option>
@@ -159,7 +184,7 @@ const ContactUsPage = () => {
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="message"
@@ -167,21 +192,29 @@ const ContactUsPage = () => {
               <FormItem>
                 <FormLabel>Message *</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your message" {...field} style={{ height: "120px" }} className="custom-input" />
+                  <Input
+                    placeholder="Enter your message"
+                    data-cy="message-input"
+                    {...field}
+                    style={{ height: "120px" }}
+                    className="custom-input"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          
-          <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white font-normal py-2 px-4 rounded">
+
+          <Button
+            type="submit"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-normal py-2 px-4 rounded"
+          >
             Submit
           </Button>
-          
         </form>
       </Form>
     </div>
   );
-}
+};
 
 export default ContactUsPage;

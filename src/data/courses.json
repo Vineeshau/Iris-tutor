@@ -1,39 +1,32 @@
 [
-    {
-      "imageUrl": "/documents.png",
-      "title": "Documents",
-      "link": "/",
-      "description": ""
-    },
-    {
-      "imageUrl": "/test.png",
-      "title": "Test/Quizzes",
-      "link": "/",
-      "description": ""
-    },
-    {
-      "imageUrl": "/grade.png",
-      "title": "Grades",
-      "link": "/",
-      "description": ""
-    },
-    {
-      "imageUrl": "/manage_individual.png",
-      "title": "Manage individual permissions",
-      "link": "/",
-      "description": "How-to"
-    },
-    {
-      "imageUrl": "/treat_your_team.png",
-      "title": "Treat your teams like pros.",
-      "link": "/",
-      "description": "Blog"
-    },
-    {
-      "imageUrl": "/your_team_mate.png",
-      "title": "Your teammates can zoom in too.",
-      "link": "/",
-      "description": "Blog"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "name": "Custom Courses Creation",
+    "image": "/img1.png"
+  },
+  {
+    "id": 2,
+    "name": "AI Assessment Analyzer ",
+    "image": "/img2.png"
+  },
+  {
+    "id": 3,
+    "name": "Announce Sessions",
+    "image": "/img3.png"
+  },
+  {
+    "id": 4,
+    "name": "Course Exploration",
+    "image": "/img4.png"
+  },
+  {
+    "id": 5,
+    "name": "Messaging Hub",
+    "image": "/img5.png"
+  },
+  {
+    "id": 6,
+    "name": "Add Users",
+    "image": "/img6.png"
+  }
+]

@@ -65,7 +65,6 @@ const pricingData = [
 ];
 
 function Page(props) {
-  console.log(props);
   const [toggle, setToggle] = useState(false);
 
   const toggleChange = () => {
@@ -73,7 +72,10 @@ function Page(props) {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4 p-4 py-20">
+    <div
+      className="flex flex-col justify-center items-center gap-4 p-4 py-20"
+      style={{ backgroundColor: "rgba(246, 212, 160, 0.4)" }}
+    >
       <div className="flex flex-col items-center justify-center gap-6 text-center">
         <p className="text-4xl leading-8 font-medium text-[#152237]">
           Pricing that fits every stage

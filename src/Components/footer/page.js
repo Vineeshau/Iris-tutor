@@ -1,6 +1,5 @@
 import React from "react";
-import { FaFacebookF } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,30 +9,28 @@ function Page() {
     <div className="flex flex-col lg:flex-row items-center py-20 px-40">
       <div className="flex-1 lg:text-center">
         <Image src="/logo.svg" width={100} height={30} alt="Image" />
-        <p className="max-w-xs text-center lg:text-left py-6">
-          We&apos;re a team of experienced designers and developers. We can combine
-          beautiful, modern designs with clean, functional, and high-performance
-          code to produce stunning websites.
+        <p className="max-w-xs text-center lg:text-left py-6 font-bold">
+          We&apos;re a team of experienced designers and developers. We can
+          combine beautiful, modern designs with clean, functional, and
+          high-performance code to produce stunning websites.
         </p>
         <div className="flex justify-center lg:justify-start mt-4 lg:mt-0 py-8">
-          <div className="flex justify-center items-center">
-            <Link
-              href="#"
-              className="bg-white-200 p-2 mr-2 border border-gray-300"
-            >
-              <FaFacebookF />
+          <div className="flex justify-center items-center space-x-2">
+            <Link href="#" className="bg-blue-600 p-2 border border-gray-300 rounded-sm">
+              <FaFacebookF className="text-white text-2xl" />
+            </Link>
+            <Link href="#" className="bg-gray-900 p-2 border border-gray-300 rounded-sm">
+              <FaXTwitter className="text-white text-2xl" />
             </Link>
             <Link
               href="#"
-              className="bg-white-200 p-2 mr-2 border border-gray-300"
+              className="p-2 border border-gray-300 rounded-sm"
+              style={{
+                background:
+                  "linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)",
+              }}
             >
-              <FaXTwitter />
-            </Link>
-            <Link
-              href="#"
-              className="bg-white-200 p-2 mr-2 border border-gray-300"
-            >
-              <FaInstagram />
+              <FaInstagram className="text-white text-2xl" />
             </Link>
           </div>
         </div>
@@ -41,7 +38,7 @@ function Page() {
 
       <div className="flex-1 lg:order-1 lg:flex lg:justify-around lg:py-4">
         <div className="p-4 py-1">
-          <h3 className="text-lg font-semibold mb-4 text-center lg:text-left">
+          <h3 className="text-lg font-bold mb-4 text-center lg:text-left">
             Company
           </h3>
           <Link
@@ -65,7 +62,7 @@ function Page() {
         </div>
 
         <div className="p-4 py-1">
-          <h3 className="text-lg font-semibold mb-4 text-center lg:text-left">
+          <h3 className="text-lg font-bold mb-4 text-center lg:text-left">
             Product
           </h3>
           <Link
@@ -89,7 +86,7 @@ function Page() {
         </div>
 
         <div className="p-4 py-1">
-          <h3 className="text-lg font-semibold mb-4 text-center lg:text-left">
+          <h3 className="text-lg font-bold mb-4 text-center lg:text-left">
             Support
           </h3>
           <Link

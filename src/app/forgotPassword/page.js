@@ -41,7 +41,10 @@ function Page() {
   };
 
   return (
-    <div className="py-20 w-full">
+    <div
+      className="py-20 w-full"
+      style={{ backgroundColor: "rgba(246, 212, 160, 0.4)" }}
+    >
       <div className="flex justify-center">
         <Card className="flex flex-col border-none shadow-2xl items-center rounded-2xl w-96 lg:w-[450px] shadow-2x gap-2">
           <CardHeader>
@@ -66,6 +69,7 @@ function Page() {
                       <FormControl>
                         <Input
                           type="email"
+                          data-cy="email-input"
                           placeholder="Your Email"
                           className="p-4 rounded-xl border-[#8e939d]"
                           {...field}
@@ -84,8 +88,7 @@ function Page() {
               </form>
             </Form>
           </CardContent>
-          <CardFooter className="flex flex-col items-center gap-4">
-          </CardFooter>
+          <CardFooter className="flex flex-col items-center gap-4"></CardFooter>
         </Card>
       </div>
     </div>

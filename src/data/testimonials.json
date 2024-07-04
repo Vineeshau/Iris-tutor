@@ -1,0 +1,45 @@
+[
+    {
+      "id": 1,
+      "image": "/morgan.png",
+      "quote": "When you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations.",
+      "author": "Morgan James",
+      "role": "Co-Founder & CEO"
+    },
+    {
+      "id": 2,
+      "image": "/john.jpg",
+      "quote": "Technology is just a tool. In terms of getting the kids working together and motivating them, the teacher is the most important.",
+      "author": "John Smith",
+      "role": "Co-Founder & CTO"
+    },
+    {
+      "id": 3,
+      "image": "/morgan.png",
+      "quote": "Design everything on the assumption that people are not heartless or stupid but marvelously capable, given the chance.",
+      "author": "Amy Schneider",
+      "role": "Lead Designer"
+    },
+    {
+        "id": 4,
+        "image": "/john.jpg",
+        "quote": "When you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations.",
+        "author": "Morgan James",
+        "role": "Co-Founder & CEO"
+      },
+      {
+        "id": 5,
+        "image": "/morgan.png",
+        "quote": "Technology is just a tool. In terms of getting the kids working together and motivating them, the teacher is the most important.",
+        "author": "John Smith",
+        "role": "Co-Founder & CTO"
+      },
+      {
+        "id": 6,
+        "image": "/john.jpg",
+        "quote": "Design everything on the assumption that people are not heartless or stupid but marvelously capable, given the chance.",
+        "author": "Amy Schneider",
+        "role": "Lead Designer"
+      }
+  ]
+  
