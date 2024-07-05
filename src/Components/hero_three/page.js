@@ -18,13 +18,6 @@ function Page() {
           Discover Iris Tutor Today
         </h2>
       </div>
-
-      <div className="text-center">
-        <h2 className="font-bold lg:text-4xl text-blue-500 max-w-4xl">
-          About IrisTutor
-        </h2>
-      </div>
-
       <div className="flex flex-col lg:flex-row gap-8 items-center justify-center max-w-6xl px-4 lg:px-0">
         <p className="text-center font-medium text-base lg:text-lg">
           Iris Tutor is a versatile and user-friendly platform designed to help
@@ -50,7 +43,7 @@ function Page() {
             allow="autoplay; encrypted-media"
           ></iframe>
         ) : (
-          <Card className="w-96 h-96 lg:w-[600px] lg:h-[300px] shadow-2xl flex justify-center items-center cursor-pointer">
+          <Card className="w-96 h-96 lg:w-[600px] lg:h-[300px] shadow-2xl flex justify-center items-center cur">
             <CardContent
               className="flex justify-center items-center"
               onClick={videoPlay}
@@ -67,7 +60,7 @@ function Page() {
                 width={70}
                 height={70}
                 alt="Play Button"
-                className="relative"
+                className="relative cursor-pointer"
               />
             </CardContent>
           </Card>

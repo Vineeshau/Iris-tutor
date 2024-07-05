@@ -8,11 +8,7 @@ function Page() {
   return (
     <div
       className="flex flex-col items-center justify-center gap-4 py-20"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(251, 178, 67, 0.4), rgba(50, 120, 255, 0.2))",
-        minHeight: "100vh", // Ensure the container takes at least the full viewport height
-      }}
+      style={{ backgroundColor: "rgba(50, 120, 255, 0.4)" }}
     >
       <div className="flex flex-col items-center">
         <p className="text-2xl lg:text-5xl font-bold text-black max-w-xs lg:max-w-none">

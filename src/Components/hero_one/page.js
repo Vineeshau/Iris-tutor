@@ -15,11 +15,8 @@ import Pricing from "../../app/pricing/page";
 function Page({ onGetStarted }) {
   return (
     <div
-      className="flex flex-col lg:flex-row items-center justify-center lg:py-20 gap-20 h-screen"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(251, 178, 67, 0.4), rgba(50, 120, 255, 0.2))",
-      }}
+      className="flex flex-col lg:flex-row items-center justify-center lg:py-20 gap-20 h-screen bg-red-50"
+      style={{ backgroundColor: 'rgba(246, 212, 160, 0.4)' }}
     >
       <div className="flex flex-col lg:items-start gap-8 px-20">
         <p className="text-black text-5xl">
@@ -33,7 +30,7 @@ function Page({ onGetStarted }) {
         <p className="text-black text-2xl font-sm">Your Gateway to Infinite Learning!</p>
         <div className="flex gap-4">
           <button
-            className="bg-blue-500 rounded-2xl text-white text-sm lg:text-base font-bold lg:w-40 lg:h-11 px-4"
+            className="bg-blue-500 rounded-2xl text-white text-sm lg:text-base font-bold lg:w-50 lg:h-11 px-4"
             onClick={onGetStarted}
           >
             <span className="text-white">Get Started</span>

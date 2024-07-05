@@ -6,18 +6,27 @@ import Image from "next/image";
 
 function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="w-full">
       <div className="card w-full shadow-xl bg-white px-5 lg:px-10">
-        <div className="h-20 lg:h-28 flex flex-row items-center justify-around">
+        <div className="h-20 lg:h-28 flex flex-row items-center justify-between">
           <div className="w-24 lg:w-auto">
             <Link href="/">
-            <Image src="/logo.svg" width={100} height={50} alt="Image" />
+              <Image src="/logo.svg" width={130} height={30} alt="Image"  className=""/>
             </Link>
           </div>
           <div className="md:hidden">
             <svg
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={toggleMenu}
               className="w-6 h-6 cursor-pointer"
               fill="none"
               viewBox="0 0 24 24"
@@ -31,17 +40,11 @@ function Page() {
               />
             </svg>
           </div>
-          <div
-            className={`md:flex gap-10 md:gap-10 text-lg font-normal items-center ${
-              isMenuOpen
-                ? "z-50 mt-72 flex flex-col w-full translate-y-5 p-4 bg-[#ffffff] text-white"
-                : "hidden"
-            }`}
-          >
+          <div className="hidden md:flex gap-10 text-lg font-normal items-center">
             <Link href="/" className="text-gray-800 hover:text-gray-600">
               Home
             </Link>
-            <Link href="/dashboard/courses" className="text-gray-800 hover:text-gray-600">
+            <Link href="/signin" className="text-gray-800 hover:text-gray-600">
               Courses
             </Link>
             <Link href="/contactus" className="text-gray-800 hover:text-gray-600">
@@ -50,17 +53,42 @@ function Page() {
             <Link href="/pricing" className="text-gray-800 hover:text-gray-600">
               Pricing
             </Link>
-            <div className="flex gap-3 py-20">
+            <div className="flex gap-3">
               <Button asChild style={{ backgroundColor: 'white', color: 'black', width: '100px', height: '40px', border: '1px solid black', borderRadius: '5px' }}>
                 <Link href="/signin">Sign in</Link>
               </Button>
-              
               <Button asChild style={{ backgroundColor: '#3278FF', color: 'white', width: '100px', height: '40px' }}>
                 <Link href="/signup">Sign up</Link>
               </Button>
             </div>
           </div>
         </div>
+        {isMenuOpen && (
+          <div className="md:hidden inset-0 bg-white flex flex-col items-center p-4 overflow-y-auto">
+            <div className="flex flex-col items-center gap-6 text-lg font-normal mt-2 w-24">
+              <Link href="/" onClick={closeMenu} className="text-gray-800 hover:text-gray-600">
+                Home
+              </Link>
+              <Link href="/dashboard/courses" onClick={closeMenu} className="text-gray-800 hover:text-gray-600">
+                Courses
+              </Link>
+              <Link href="/contactus" onClick={closeMenu} className="text-gray-800 hover:text-gray-600">
+                Contact Us
+              </Link>
+              <Link href="/pricing" onClick={closeMenu} className="text-gray-800 hover:text-gray-600">
+                Pricing
+              </Link>
+              <div className="flex flex-col gap-3 py-10 w-full items-center">
+                <Button asChild style={{ backgroundColor: 'white', color: 'black', width: '100px', height: '40px', border: '1px solid black', borderRadius: '5px' }}>
+                  <Link href="/signin" onClick={closeMenu}>Sign in</Link>
+                </Button>
+                <Button asChild style={{ backgroundColor: '#3278FF', color: 'white', width: '100px', height: '40px' }}>
+                  <Link href="/signup" onClick={closeMenu}>Sign up</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
