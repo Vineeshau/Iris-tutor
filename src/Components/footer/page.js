@@ -12,8 +12,8 @@ function Footer() {
           <div className="text-center lg:text-left mb-8 lg:mb-0 lg:mr-10">
             <Image src="/logo.svg" width={150} height={45} alt="Logo" className="mx-auto lg:mx-0" />
             <p className="mt-4 text-base lg:text-lg font-semibold text-gray-300 text-center lg:text-left max-w-lg">
-              We're a team of experienced designers and developers. We combine
-              beautiful, modern designs with clean, functional, and high-performance
+              We&apos;re a team of experienced designers and developers. We combine
+              beautiful&lsquo; modern designs with clean&lsquo; functional&lsquo; and high-performance
               code to produce stunning websites.
             </p>
             <div className="flex justify-center lg:justify-start mt-6 space-x-4">
