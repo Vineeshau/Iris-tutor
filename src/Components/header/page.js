@@ -3,21 +3,21 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/Components/ui/button";
 import Image from "next/image";
-
+ 
 function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+ 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+ 
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
-
+ 
   return (
     <div className="w-full">
-      <div className="card w-full shadow-xl bg-white px-5 lg:px-10">
+      <div className="card w-full shadow-xl bg-gray-900 px-5 lg:px-10">
         <div className="h-20 lg:h-28 flex flex-row items-center justify-between">
           <div className="w-24 lg:w-auto">
             <Link href="/">
@@ -27,7 +27,7 @@ function Page() {
           <div className="md:hidden">
             <svg
               onClick={toggleMenu}
-              className="w-6 h-6 cursor-pointer"
+              className="w-6 h-6 cursor-pointer text-white"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -41,16 +41,16 @@ function Page() {
             </svg>
           </div>
           <div className="hidden md:flex gap-10 text-lg font-normal items-center">
-            <Link href="/" className="text-gray-800 hover:text-gray-600">
+            <Link href="/" className="text-white hover:text-gray">
               Home
             </Link>
-            <Link href="/signin" className="text-gray-800 hover:text-gray-600">
+            <Link href="/signin" className="text-white">
               Courses
             </Link>
-            <Link href="/contactus" className="text-gray-800 hover:text-gray-600">
+            <Link href="/contactus" className="text-white">
               Contact Us
             </Link>
-            <Link href="/pricing" className="text-gray-800 hover:text-gray-600">
+            <Link href="/pricing" className="text-white">
               Pricing
             </Link>
             <div className="flex gap-3">
@@ -93,5 +93,5 @@ function Page() {
     </div>
   );
 }
-
+ 
 export default Page;

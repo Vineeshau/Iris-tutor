@@ -11,12 +11,11 @@ import {
 import { X } from "lucide-react";
 import { Button } from "@/Components/ui/button";
 import Pricing from "../../app/pricing/page";
-
+ 
 function Page({ onGetStarted }) {
   return (
     <div
-      className="flex flex-col lg:flex-row items-center justify-center lg:py-20 gap-20 h-screen bg-red-50"
-      style={{ backgroundColor: 'rgba(246, 212, 160, 0.4)' }}
+      className="flex flex-col lg:flex-row items-center justify-center lg:py-20 gap-20 h-screen bg-gray-100"
     >
       <div className="flex flex-col lg:items-start gap-8 px-20">
         <p className="text-black text-5xl">
@@ -35,7 +34,7 @@ function Page({ onGetStarted }) {
           >
             <span className="text-white">Get Started</span>
           </button>
-
+ 
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button
@@ -45,7 +44,7 @@ function Page({ onGetStarted }) {
                 Schedule Demo
               </Button>
             </AlertDialogTrigger>
-
+ 
             <AlertDialogContent className="w-full max-w-screen-md h-auto max-h-screen-md">
               <AlertDialogFooter className="flex justify-end">
                 <AlertDialogCancel className="text-black"><X/></AlertDialogCancel>
@@ -63,5 +62,5 @@ function Page({ onGetStarted }) {
     </div>
   );
 }
-
+ 
 export default Page;

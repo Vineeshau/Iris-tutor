@@ -54,10 +54,7 @@ function Signup() {
   };
 
   return (
-    <div
-      className="py-20 w-full"
-      style={{ backgroundColor: "rgba(246, 212, 160, 0.4)" }}
-    >
+    <div className="py-20 w-full bg-gray-100">
       <div className="flex justify-center">
         <Card className="flex flex-col border-none shadow-2xl items-center rounded-2xl w-96 lg:w-[450px] shadow-2x gap-6">
           <CardHeader>

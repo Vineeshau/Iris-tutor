@@ -54,10 +54,7 @@ const ContactUsPage = () => {
   };
 
   return (
-    <div
-      className="flex justify-center items-center h-full py-20"
-      style={{ backgroundColor: "rgba(246, 212, 160, 0.4)" }}
-    >
+    <div className="flex justify-center items-center h-full py-20 bg-gray-100">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <h2 className="text-2xl font-bold text-center">Contact Form</h2>
