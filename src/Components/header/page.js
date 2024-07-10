@@ -3,25 +3,25 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/Components/ui/button";
 import Image from "next/image";
- 
+
 function Page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
- 
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
- 
+
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
- 
+
   return (
     <div className="w-full">
       <div className="card w-full shadow-xl bg-gray-900 px-5 lg:px-10">
         <div className="h-20 lg:h-28 flex flex-row items-center justify-between">
           <div className="w-24 lg:w-auto">
             <Link href="/">
-              <Image src="/logo.svg" width={130} height={30} alt="Image"  className=""/>
+              <Image src="/logo.svg" width={130} height={30} alt="Logo" className="" />
             </Link>
           </div>
           <div className="md:hidden">
@@ -54,36 +54,76 @@ function Page() {
               Pricing
             </Link>
             <div className="flex gap-3">
-              <Button asChild style={{ backgroundColor: 'white', color: 'black', width: '100px', height: '40px', border: '1px solid black', borderRadius: '5px' }}>
+              <Button
+                asChild
+                style={{
+                  backgroundColor: "white",
+                  color: "black",
+                  width: "100px",
+                  height: "40px",
+                  border: "1px solid black",
+                  borderRadius: "5px",
+                }}
+              >
                 <Link href="/signin">Sign in</Link>
               </Button>
-              <Button asChild style={{ backgroundColor: '#3278FF', color: 'white', width: '100px', height: '40px' }}>
+              <Button
+                asChild
+                style={{
+                  backgroundColor: "#3278FF",
+                  color: "white",
+                  width: "100px",
+                  height: "40px",
+                }}
+              >
                 <Link href="/signup">Sign up</Link>
               </Button>
             </div>
           </div>
         </div>
         {isMenuOpen && (
-          <div className="md:hidden inset-0 bg-white flex flex-col items-center p-4 overflow-y-auto">
-            <div className="flex flex-col items-center gap-6 text-lg font-normal mt-2 w-24">
-              <Link href="/" onClick={closeMenu} className="text-gray-800 hover:text-gray-600">
+          <div className="md:hidden inset-0 bg-gray-900 flex flex-col items-center p-4 overflow-y-auto">
+            <div className="flex flex-col items-center gap-6 text-lg font-normal mt-2 w-full">
+              <Link href="/" onClick={closeMenu} className="text-white">
                 Home
               </Link>
-              <Link href="/dashboard/courses" onClick={closeMenu} className="text-gray-800 hover:text-gray-600">
+              <Link href="/signin" onClick={closeMenu} className="text-white">
                 Courses
               </Link>
-              <Link href="/contactus" onClick={closeMenu} className="text-gray-800 hover:text-gray-600">
+              <Link href="/contactus" onClick={closeMenu} className="text-white">
                 Contact Us
               </Link>
-              <Link href="/pricing" onClick={closeMenu} className="text-gray-800 hover:text-gray-600">
+              <Link href="/pricing" onClick={closeMenu} className="text-white">
                 Pricing
               </Link>
               <div className="flex flex-col gap-3 py-10 w-full items-center">
-                <Button asChild style={{ backgroundColor: 'white', color: 'black', width: '100px', height: '40px', border: '1px solid black', borderRadius: '5px' }}>
-                  <Link href="/signin" onClick={closeMenu}>Sign in</Link>
+                <Button
+                  asChild
+                  style={{
+                    backgroundColor: "white",
+                    color: "black",
+                    width: "100px",
+                    height: "40px",
+                    border: "1px solid black",
+                    borderRadius: "5px",
+                  }}
+                >
+                  <Link href="/signin" onClick={closeMenu}>
+                    Sign in
+                  </Link>
                 </Button>
-                <Button asChild style={{ backgroundColor: '#3278FF', color: 'white', width: '100px', height: '40px' }}>
-                  <Link href="/signup" onClick={closeMenu}>Sign up</Link>
+                <Button
+                  asChild
+                  style={{
+                    backgroundColor: "#3278FF",
+                    color: "white",
+                    width: "100px",
+                    height: "40px",
+                  }}
+                >
+                  <Link href="/signup" onClick={closeMenu}>
+                    Sign up
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -93,5 +133,5 @@ function Page() {
     </div>
   );
 }
- 
+
 export default Page;
