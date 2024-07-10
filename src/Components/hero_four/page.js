@@ -20,8 +20,8 @@ function Page() {
       </div>
       <div className="flex-1 p-4 py-3">
         <p className="text-gray-700 mb-6 text-center text-xl lg:text-2xl">
-          Join <span className="font-bold text-gray-900">10,000</span> happy
-          customers worldwide who are already using our amazing product.
+          Join <span className="font-bold text-gray-900">10&quot;000</span> happy customers
+          worldwide who are already using our amazing product.
         </p>
       </div>
       
@@ -46,7 +46,7 @@ function Page() {
                       className="mx-auto mb-4 rounded-full"
                     />
                     <p className="text-gray-700 mb-4 text-center text-lg">
-                      "{testimonial.quote}"
+                      &quot;{testimonial.quote}&quot;
                     </p>
                     <h3 className="text-lg font-semibold mb-2 text-center text-gray-900">
                       {testimonial.author}
