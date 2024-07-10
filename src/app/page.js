@@ -8,16 +8,10 @@ import HeroFour from "../Components/hero_four/page";
 export default function Home() {
   return (
     <div>
-      <HeroOne className="" />
-      <div className="">
-        <HeroThree />
-      </div>
-      <div className="">
-        <HeroTwo />
-      </div>
-      <div className="">
-        <HeroFour />
-      </div>
+      <HeroOne/>
+      <HeroThree />
+      <HeroTwo />
+      <HeroFour />
     </div>
   );
 }
