@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/Components/ui/card";
@@ -27,7 +27,7 @@ function PublishedCourses({ onLinkClick }) {
             onClick={onLinkClick}
           >
             {course.image && (
-              <img
+              <Image
                 src={course.image}
                 alt={course.coursename}
                 className="rounded-xl"

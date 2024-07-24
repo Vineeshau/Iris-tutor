@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Card, CardContent } from "@/Components/ui/card";
 import cardData from "../../data/dashboard_courses.json";
+import Image from "next/image";
+
 import {
   Tooltip,
   TooltipContent,
@@ -19,7 +21,7 @@ import {
   X,
 } from "lucide-react";
 import New from "@/Components/dashboard/startNewCourseDialog";
-import ModuleCreationComponent from "@/Components/courses/module/addModule"; 
+import ModuleCreationComponent from "@/Components/courses/module/addModule";
 import { toast } from "sonner";
 
 function Dashboard() {
@@ -144,7 +146,7 @@ function Dashboard() {
               <div className="relative">
                 {course.image && (
                   <div className="relative">
-                    <img
+                    <Image
                       src={course.image}
                       alt={course.coursename}
                       className="rounded-xl"
@@ -289,7 +291,7 @@ function Dashboard() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="relative bg-white shadow-2xl rounded-2xl h-screen w-[1000px]">
             <div className="flex justify-end p-5">
-              <X onClick={moduleClose} className="cursor-pointer"/>
+              <X onClick={moduleClose} className="cursor-pointer" />
             </div>
             <ModuleCreationComponent />
           </div>
