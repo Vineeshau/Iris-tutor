@@ -1,4 +1,5 @@
 import { Card, CardHeader, CardContent } from "@/Components/ui/card";
+import Image from "next/image";
 
 export default function HeroFour() {
   return (
@@ -26,7 +27,7 @@ export default function HeroFour() {
           </Card>
           <Card className="flex flex-row items-center">
             <CardHeader className="p-2 flex-shrink-0">
-              <img
+              <Image
                 src="/bullets.svg"
                 alt="Project"
                 width="180"
@@ -40,7 +41,7 @@ export default function HeroFour() {
           </Card>
           <Card className="flex flex-row items-center">
             <CardHeader className="p-2 flex-shrink-0">
-              <img
+              <Image
                 src="/collaborate.svg"
                 alt="Project"
                 width="180"
@@ -56,7 +57,7 @@ export default function HeroFour() {
         <div className=" p-4 rounded-lg space-y-4">
           <Card className="flex flex-row items-center">
             <CardHeader className="p-2 flex-shrink-0">
-              <img
+              <Image
                 src="/ai.svg"
                 alt="Project"
                 width="180"
@@ -72,7 +73,7 @@ export default function HeroFour() {
           </Card>
           <Card className="flex flex-row items-center">
             <CardHeader className="p-2 flex-shrink-0">
-              <img
+              <Image
                 src="/course-exploration.svg"
                 alt="Project"
                 width="180"
@@ -88,7 +89,7 @@ export default function HeroFour() {
           </Card>
           <Card className="flex flex-row items-center">
             <CardHeader className="p-2 flex-shrink-0">
-              <img
+              <Image
                 src="/adduser.svg"
                 alt="Project"
                 width="180"

@@ -18,7 +18,7 @@ function HeroThree() {
               </span>
             </h1>
           </div>
-          <p className="md:text-lg lg:text-xl max-w-xl mx-auto md:mx-0">
+          <p className="md:text-lg lg:text-xl max-w-xl mx-auto">
             Iris Tutor is a versatile and user-friendly platform designed to
             help organizations create customized training programs across
             various verticals to meet their specific needs. It offers a robust

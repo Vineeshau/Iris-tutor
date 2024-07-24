@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Card, CardContent } from "@/Components/ui/card";
 import New from "@/Components/dashboard/startNewCourseDialog";
 import otherCoursesData from "@/data/otherCourses.json";
+import Image from "next/image";
+
 
 function PublishedCourses() {
   const [storedCourses, setStoredCourses] = useState([]);
@@ -71,7 +73,7 @@ function PublishedCourses() {
                 className="border rounded-2xl shadow-2xl w-full cursor-pointer"
               >
                 {course.image && (
-                  <img
+                  <Image
                     src={course.image}
                     alt={course.coursename}
                     className="rounded-xl"
@@ -95,7 +97,7 @@ function PublishedCourses() {
               key={course.id}
               className="border rounded-2xl shadow-2xl w-full cursor-pointer"
             >
-              <img
+              <Image
                 src={course.image || "/placeholder-image.jpg"}
                 alt={course.coursename}
                 className="rounded-xl"

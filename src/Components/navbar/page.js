@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
+
 
 const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,7 +32,7 @@ const Navbar = () => {
                 style={{ borderRadius: "100px" }} // Change the value as desired
               />
 
-              <img
+              <Image
                 src="/search.png"
                 alt="Search Icon"
                 className="absolute left-3 top-1/2 transform -translate-y-1/2 w-6 h-6"
