@@ -1,17 +1,20 @@
-"use client";
 import React from "react";
-import HeroOne from "../Components/hero_one/page";
-import HeroTwo from "../Components/hero_two/page";
-import HeroThree from "../Components/hero_three/page";
-import HeroFour from "../Components/hero_four/page";
+import HeroOne from "../Components/landing_page/hero_one";
+import HeroTwo from "../Components/landing_page/hero_two";
+import HeroThree from "../Components/landing_page/hero_three";
+import HeroFour from "../Components/landing_page/hero_four";
+import Testimonials from "../Components/landing_page/testimonials";
 
-export default function Home() {
+function page() {
   return (
     <div>
-      <HeroOne/>
+      <HeroOne />
       <HeroThree />
       <HeroTwo />
       <HeroFour />
+      <Testimonials />
     </div>
   );
 }
+
+export default page;
