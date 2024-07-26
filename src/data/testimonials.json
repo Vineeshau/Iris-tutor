@@ -1,44 +1,58 @@
 [
   {
     "id": 1,
-    "image": "/morgan.png",
-    "quote": "When you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations.",
-    "author": "Morgan James",
-    "role": "Co-Founder & CEO"
+    "name": "Emma J.",
+    "title": "Project Manager @ Google",
+    "imgSrc": "/emma.svg",
+    "quote": "I enrolled in the Project Management Certification course, and it was a fantastic experience. The content was comprehensive, and the instructors were knowledgeable and approachable. I feel much more confident in my skills now. Highly recommend!"
   },
   {
     "id": 2,
-    "image": "/john.jpg",
-    "quote": "When you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations.",
-    "author": "John Smith",
-    "role": "Co-Founder & CTO"
+    "name": "Rob L.",
+    "title": "Data Science Intern",
+    "imgSrc": "/rob.svg",
+    "quote": "I was skeptical about the cost initially, but after completing the Data Science Certification course, I can say it was worth every penny. The insights and practical knowledge gained have been invaluable to my career growth."
   },
   {
     "id": 3,
-    "image": "/morgan.png",
-    "quote": "When you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations.",
-    "author": "Amy Schneider",
-    "role": "Lead Designer"
+    "name": "Steve R.",
+    "title": "UI/UX Designer",
+    "imgSrc": "/steve.svg",
+    "quote": "The quality of the course content exceeded my expectations. The videos were clear, and the supplementary materials were very useful. I especially appreciated the real-world examples and case studies."
   },
   {
-      "id": 4,
-      "image": "/john.jpg",
-      "quote": "When you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations.",
-      "author": "Morgan James",
-      "role": "Co-Founder & CEO"
-    },
-    {
-      "id": 5,
-      "image": "/morgan.png",
-      "quote": "When you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations.",
-      "author": "John Smith",
-      "role": "Co-Founder & CTO"
-    },
-    {
-      "id": 6,
-      "image": "/john.jpg",
-      "quote": "When you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations.",
-      "author": "Amy Schneider",
-      "role": "Lead Designer"
-    }
+    "id": 4,
+    "name": "Ashley L.",
+    "title": "Business Analyst",
+    "imgSrc": "/emma.svg",
+    "quote": "The quality of the course content exceeded my expectations. The videos were clear, and the supplementary materials were very useful. I especially appreciated the real-world examples and case studies."
+  },
+  {
+    "id": 5,
+    "name": "Emma J.",
+    "title": "Project Manager @ Google",
+    "imgSrc": "/rob.svg",
+    "quote": "I enrolled in the Project Management Certification course, and it was a fantastic experience. The content was comprehensive, and the instructors were knowledgeable and approachable. I feel much more confident in my skills now. Highly recommend!"
+  },
+  {
+    "id": 6,
+    "name": "Rob L.",
+    "title": "Data Science Intern",
+    "imgSrc": "/rob.svg",
+    "quote": "I was skeptical about the cost initially, but after completing the Data Science Certification course, I can say it was worth every penny. The insights and practical knowledge gained have been invaluable to my career growth."
+  },
+  {
+    "id": 7,
+    "name": "Steve R.",
+    "title": "UI/UX Designer",
+    "imgSrc": "/rob.svg",
+    "quote": "The quality of the course content exceeded my expectations. The videos were clear, and the supplementary materials were very useful. I especially appreciated the real-world examples and case studies."
+  },
+  {
+    "id": 8,
+    "name": "Ashley L.",
+    "title": "Business Analyst",
+    "imgSrc": "/rob.svg",
+    "quote": "The quality of the course content exceeded my expectations. The videos were clear, and the supplementary materials were very useful. I especially appreciated the real-world examples and case studies."
+  }
 ]
