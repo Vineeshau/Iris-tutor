@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Sheet, SheetTrigger, SheetContent } from "@/Components/ui/sheet";
 import { Button } from "@/Components/ui/button";
-import { Input } from "@/Components/ui/input";
+import { Input } from "@/components/ui/input";
 import Image from "next/image";
 
 function SearchIcon(props) {
@@ -48,7 +48,7 @@ function MenuIcon(props) {
 export default function Navbar() {
   return (
     <div
-      className="flex items-center justify-between px-4 py-6 dark:bg-gray-800"
+      className="flex items-center justify-between px-4 py-8 dark:bg-gray-800"
       style={{ backgroundColor: "rgba(104, 176, 171, 0.30)" }}
     >
       <Link href="/" className="flex items-center">
