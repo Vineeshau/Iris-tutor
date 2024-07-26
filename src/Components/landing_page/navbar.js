@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Sheet, SheetTrigger, SheetContent } from "@/Components/ui/sheet";
 import { Button } from "@/Components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/Components/ui/input";
 import Image from "next/image";
 
 function SearchIcon(props) {
