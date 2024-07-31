@@ -36,12 +36,23 @@ function Page() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const onSubmit = (data) => {
+    // Dummy authentication logic
+    if (data.email === "admin@chordify.com" && data.password === "admin@123") {
+      setIsAuthenticated(true);
+      setTimeout(() => {
+        window.location.href = "/dashboard"; // Redirect to dashboard
+      }, 1000); // Optional: delay for demonstration
+    } else {
+      // Handle authentication failure (e.g., show an error message)
+      alert("Invalid credentials");
+    }
     form.reset({
       email: "",
       password: "",
@@ -130,11 +141,18 @@ function Page() {
                 >
                   Forgot Password?
                 </Link>
+
                 <Button
                   type="submit"
                   className="w-full bg-[#22577A] text-white py-2 rounded-md hover:bg-[#22577A]"
                 >
-                  Sign In
+                  {isAuthenticated ? (
+                    <Link href="/dashboard" className="text-white">
+                      Redirecting to Dashboard...
+                    </Link>
+                  ) : (
+                    "Sign In"
+                  )}
                 </Button>
               </form>
             </Form>

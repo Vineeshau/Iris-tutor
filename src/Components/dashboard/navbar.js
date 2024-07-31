@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-function navbar() {
+function Navbar() {
   return (
-     <div className="flex-1 p-10 ml-60">
-      <h1 className="text-3xl font-semibold mb-5">Welcome Back!</h1>
+    <div className="flex-1 p-10 ml-60">
+      {/* Welcome message */}
+      <div className="mb-5">
+        <h1 className="text-3xl font-semibold mb-5 text-green-400">Welcome to Teacher Dashboard!</h1>
+      </div>
+
+      {/* Existing content */}
+      {/* <h1 className="text-3xl font-semibold mb-5">Welcome Back!</h1> */}
       <div className="mb-5">
         <h2 className="text-xl font-semibold mb-3">My Overview</h2>
         <div className="bg-gray-100 p-4 rounded-lg mb-4">
@@ -56,7 +62,7 @@ function navbar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default navbar
+export default Navbar;

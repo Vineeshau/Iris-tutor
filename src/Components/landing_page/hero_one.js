@@ -49,9 +49,9 @@ const HeroOne = ({ className = "" }) => {
       {/* Second Column: Image */}
       <div className="relative flex items-center justify-center md:w-1/2">
         {/* Gray Rounded Shape */}
-        <div className="absolute rounded-full bg-[rgba(104,176,171,0.3)] w-48 h-48 right-20"></div>
+        <div className="absolute rounded-full bg-[rgba(104,176,171,0.3)] md:w-32 md:h-32 lg:w-24 lg:h-24 xl:w-48 xl:h-48 md:right-4 lg:right-20 xl:right-20 md:top-28"></div>
         {/* Blue Rounded Shape */}
-        <div className="absolute rounded-full bg-[rgba(34,87,122,0.30)] w-96 h-96 top-24 right-36"></div>
+        <div className="absolute rounded-full bg-[rgba(34,87,122,0.30)] md:w-56 md:h-56 lg:w-64 xl:w-96 lg:h-64 xl:h-96 md:top-32 lg:top-32 xl:top-24 md:right-16 lg:right-24 xl:right-36"></div>
         <Image
           src="/hero_one.svg"
           alt="Example"
