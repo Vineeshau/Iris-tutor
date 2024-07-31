@@ -43,13 +43,9 @@ function Page() {
   return (
     <div className="py-20 w-full bg-gray-100">
       <div className="flex justify-center">
-        <Card className="flex flex-col border-none shadow-2xl items-center rounded-2xl w-96 lg:w-[450px] shadow-2x gap-2">
+        <Card className="flex flex-col border-none shadow-2xl items-center rounded-2xl w-96 lg:w-[750px] shadow-2x gap-2">
           <CardHeader>
-            <CardTitle>
-              <div className="py-8">
-                <Image src="/logo.svg" width={150} height={500} alt="Image" />
-              </div>
-            </CardTitle>
+  
           </CardHeader>
           <CardContent className="flex flex-col gap-4 items-center">
             <p className="text-2xl font-bold text-[#171A1F]">Forgot Password</p>
@@ -78,9 +74,10 @@ function Page() {
                 />
                 <Button
                   type="submit"
-                  className="w-full lg:w-96 rounded border-none text-sm text-white"
+                  className="w-full lg:w-96 border-none text-sm text-white bg-[#22577A] hover:bg-[#22577A] rounded-full"
+
                 >
-                  Recover password
+                  Send Invite
                 </Button>
               </form>
             </Form>

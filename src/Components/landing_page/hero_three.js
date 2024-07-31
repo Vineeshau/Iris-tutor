@@ -37,7 +37,7 @@ function HeroThree() {
             className="w-full max-w-full md:max-w-md lg:max-w-lg rounded-lg"
             style={{ maxHeight: "500px" }}
           >
-            <source src="iris_tutor.mp4" type="video/mp4" />
+            <source src="iris_tutor_new.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

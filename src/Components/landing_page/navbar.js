@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 import { Sheet, SheetTrigger, SheetContent } from "@/Components/ui/sheet";
 import { Button } from "@/Components/ui/button";
@@ -46,9 +47,15 @@ function MenuIcon(props) {
 }
 
 export default function Navbar() {
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const handleLinkClick = () => {
+    setIsSheetOpen(false);
+  };
+
   return (
     <div
-      className="flex items-center justify-between px-4 py-8 dark:bg-gray-800"
+      className="flex items-center justify-between px-4 py-4 md:py-8 bg-opacity-30 dark:bg-gray-800"
       style={{ backgroundColor: "rgba(104, 176, 171, 0.30)" }}
     >
       <Link href="/" className="flex items-center">
@@ -57,24 +64,23 @@ export default function Navbar() {
           width={60}
           height={60}
           alt="Logo"
-          className=""
         />
-        <span className="ml-2 text-4xl font-semibold text-black dark:text-white">
+        <span className="ml-2 text-2xl md:text-4xl font-semibold text-black dark:text-white">
           Iris Tutor
         </span>
       </Link>
 
-      <div className="hidden md:flex gap-4">
+      <div className="hidden md:flex items-center gap-4">
         <Link href="/" className="text-lg font-medium" prefetch={false}>
           Home
         </Link>
         <Link href="#" className="text-lg font-medium" prefetch={false}>
           Courses
         </Link>
-        <Link href="#" className="text-lg font-medium" prefetch={false}>
+        <Link href="/contactus" className="text-lg font-medium" prefetch={false}>
           Contact Us
         </Link>
-        <Link href="#" className="text-lg font-medium" prefetch={false}>
+        <Link href="/pricing" className="text-lg font-medium" prefetch={false}>
           Pricing
         </Link>
       </div>
@@ -87,7 +93,11 @@ export default function Navbar() {
           <Input
             type="search"
             placeholder="Search..."
-            className="h-9 w-[200px] rounded-md border border-gray-300 bg-gray-100 pl-10 text-sm focus:border-gray-500 focus:bg-white focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:focus:border-gray-600"
+            className="h-9 w-[250px] border-gray-300 bg-gray-100 pl-10 text-sm focus:border-gray-500 focus:bg-white focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:focus:border-gray-600 rounded-lg"
+            style={{
+              borderRadius: "20px",
+              borderColor: "rgba(104, 176, 171, 0.30)",
+            }}
           />
         </form>
 
@@ -98,48 +108,58 @@ export default function Navbar() {
 
         <Button
           asChild
+          className="hidden md:inline-flex"
           style={{
             backgroundColor: "white",
             color: "black",
             width: "100px",
             height: "40px",
-            border: "1px solid black",
-            borderRadius: "5px",
+            borderRadius: "20px",
           }}
         >
-          <Link href="/signin">Sign in</Link>
+          <Link href="/signin">Log in</Link>
         </Button>
         <Button
           asChild
+          className="hidden md:inline-flex"
           style={{
-            backgroundColor: "rgba(34, 87, 122, 0.43)",
+            backgroundColor: "rgba(104, 176, 171)",
             color: "black",
             width: "100px",
             height: "40px",
+            borderRadius: "20px",
           }}
         >
           <Link href="/signup">Sign up</Link>
         </Button>
       </div>
 
-      <Sheet>
+      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="md:hidden">
+          <Button
+            variant="outline"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setIsSheetOpen(!isSheetOpen)}
+          >
             <MenuIcon className="h-6 w-6" />
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
         <SheetContent side="left">
           <div className="flex flex-col items-center p-4">
-            <Link href="/" className="flex items-center mb-4">
+            <Link
+              href="/"
+              className="flex items-center mb-4"
+              onClick={handleLinkClick}
+            >
               <Image
                 src="/iris_logo.svg"
                 width={60}
                 height={60}
                 alt="Logo"
-                className=""
               />
-              <span className="ml-2 text-4xl font-semibold text-black dark:text-white">
+              <span className="ml-2 text-2xl md:text-4xl font-semibold text-black dark:text-white">
                 Iris Tutor
               </span>
             </Link>
@@ -147,27 +167,31 @@ export default function Navbar() {
               href="/"
               className="text-lg font-medium mb-4"
               prefetch={false}
+              onClick={handleLinkClick}
             >
               Home
             </Link>
             <Link
               href="#"
-              className="text-lg font-medium  mb-4"
+              className="text-lg font-medium mb-4"
               prefetch={false}
+              onClick={handleLinkClick}
             >
               Courses
             </Link>
             <Link
-              href="#"
-              className="text-lg font-medium  mb-4"
+              href="/contactus"
+              className="text-lg font-medium mb-4"
               prefetch={false}
+              onClick={handleLinkClick}
             >
               Contact Us
             </Link>
             <Link
-              href="#"
-              className="text-lg font-medium  mb-4"
+              href="/pricing"
+              className="text-lg font-medium mb-4"
               prefetch={false}
+              onClick={handleLinkClick}
             >
               Pricing
             </Link>
@@ -179,20 +203,22 @@ export default function Navbar() {
                   color: "black",
                   width: "100px",
                   height: "40px",
-                  border: "1px solid black",
-                  borderRadius: "5px",
+                  borderRadius: "20px",
                 }}
+                onClick={handleLinkClick}
               >
                 <Link href="/signin">Sign in</Link>
               </Button>
               <Button
                 asChild
                 style={{
-                  backgroundColor: "rgba(34, 87, 122, 0.43)",
+                  backgroundColor: "rgba(104, 176, 171, 0.43)",
                   color: "black",
                   width: "100px",
                   height: "40px",
+                  borderRadius: "20px",
                 }}
+                onClick={handleLinkClick}
               >
                 <Link href="/signup">Sign up</Link>
               </Button>

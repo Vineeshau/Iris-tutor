@@ -35,9 +35,10 @@ function Testimonials() {
 
   return (
     <div className="w-full py-8">
-      <div className="max-w-7xl w-full mx-auto text-center">
-        <h3 className="text-3xl lg:text-5xl font-medium text-gray-900 text-center py-10">
-          If you don’t believe us...
+      <div className="max-w-7xl w-full mx-auto text-center px-4 md:px-8 lg:px-16">
+        <h3 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-gray-900 py-4 md:py-8 lg:py-10 whitespace-nowrap">
+          Success stories with <span className="text-[#22577A]">Iris</span>
+          <span className="text-[#22577A] mt-2 md:mt-4"> Tutor</span>
         </h3>
       </div>
 

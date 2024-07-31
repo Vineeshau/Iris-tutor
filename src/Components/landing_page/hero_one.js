@@ -11,7 +11,7 @@ const HeroOne = ({ className = "" }) => {
       {/* First Column: Text Content */}
       <div className="flex flex-col md:w-1/2 space-y-4 md:space-y-6 max-w-xl md:max-w-none justify-center pl-4 md:pl-8 lg:pl-14">
         <div className="flex flex-col items-center justify-center space-y-4 md:space-y-6">
-          <h1 className="md:text-4xl lg:text-5xl font-sm text-center whitespace-nowrap max-w-full lg:max-w-screen-xl mx-auto">
+          <h1 className="md:text-4xl lg:text-5xl font-medium text-center whitespace-nowrap max-w-full lg:max-w-screen-xl mx-auto">
             Empower <span className="text-[#22577A]">Minds</span>,{" "}
             <span className="">Illuminate</span>{" "}
             <span className="text-[#22577A]">Futures</span>

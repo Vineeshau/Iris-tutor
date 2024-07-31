@@ -1,8 +1,17 @@
 "use client";
-import React, { useState } from "react";
+
+import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { Button } from "@/Components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/Components/ui/card";
 import {
   Form,
   FormControl,
@@ -12,206 +21,167 @@ import {
   FormMessage,
 } from "@/Components/ui/form";
 import { Input } from "@/Components/ui/input";
-import { contactusSchema } from "../../schemas/contactusSchema";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
 
-const ContactUsPage = () => {
+// Define the validation schema using Zod
+const forgotPasswordSchema = z.object({
+  firstName: z.string().nonempty("First name is required"),
+  lastName: z.string().nonempty("Last name is required"),
+  email: z.string().email("Invalid email address").nonempty("Email is required"),
+  phoneNumber: z.string()
+    .optional()
+    .refine(value => value === undefined || value.length >= 10, "Phone number should be at least 10 digits"),
+  message: z.string().nonempty("Message is required"),
+});
+
+function Page() {
   const form = useForm({
-    resolver: zodResolver(contactusSchema),
+    resolver: zodResolver(forgotPasswordSchema),
     mode: "onBlur",
     defaultValues: {
-      fullName: "",
+      firstName: "",
+      lastName: "",
       email: "",
       phoneNumber: "",
-      companyName: "",
-      companySize: "",
       message: "",
     },
   });
 
   const onSubmit = (data) => {
+    console.log(data);
     form.reset({
-      fullName: "",
+      firstName: "",
+      lastName: "",
       email: "",
       phoneNumber: "",
-      companyName: "",
-      companySize: "",
       message: "",
     });
   };
 
-  const [valid, setValid] = useState(true);
-
-  const handleChange = (value) => {
-    form.setValue("phoneNumber", value);
-    setValid(validatePhoneNumber(value));
-  };
-
-  const validatePhoneNumber = (phoneNumber) => {
-    const phoneNumberPattern = /^\+?[1-9]\d{1,14}$/;
-    return phoneNumberPattern.test(phoneNumber);
-  };
-
   return (
-    <div className="flex justify-center items-center h-full py-20 bg-gray-100">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <h2 className="text-2xl font-bold text-center">Contact Form</h2>
-          <p className="text-2xl font-normal text-center">
-            Let&apos;s Connect and Explore New Possibilities
-          </p>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#E8F3FA] py-8 md:py-16">
+      <div className="w-full max-w-md px-4">
+        <Card className="flex flex-col border-none shadow-2xl items-center rounded-2xl w-full max-w-xl lg:max-w-3xl xl:max-w-5xl shadow-2x gap-2">
+          <CardHeader>
+            <CardTitle className="text-3xl font-medium text-[#171A1F]">
+              Get in touch with us!
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-4 items-center w-full">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6 mt-6 w-full"
+              >
+                <FormField
+                  control={form.control}
+                  name="firstName"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col w-full">
+                      <FormLabel>First Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder="First Name"
+                          className="p-4 rounded-xl border-[#8e939d]"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="lastName"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col w-full">
+                      <FormLabel>Last Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder="Last Name"
+                          className="p-4 rounded-xl border-[#8e939d]"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-          <FormField
-            control={form.control}
-            name="fullName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Full Name *</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Enter your full name"
-                    className="custom-input"
-                    data-cy="full-name-input"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col w-full">
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder="Your Email"
+                          className="p-4 rounded-xl border-[#8e939d]"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phoneNumber"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col w-full">
+                      <FormLabel>Phone Number</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="tel"
+                          placeholder="Phone Number"
+                          className="p-4 rounded-xl border-[#8e939d]"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email *</FormLabel>
-                <FormControl>
-                  <Input
-                    type="email"
-                    data-cy="email-input"
-                    placeholder="Enter your email"
-                    {...field}
-                    className="custom-input"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormLabel>Message</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Message"
+                          data-cy="message-input"
+                          {...field}
+                          style={{ height: "120px" }}
+                          className="custom-input w-full"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-          <FormField
-            control={form.control}
-            name="phoneNumber"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Phone Number *</FormLabel>
-                <FormControl>
-                  <PhoneInput
-                    country={"us"}
-                    value={field.value}
-                    onChange={(value) => {
-                      handleChange(value);
-                      field.onChange(value);
-                    }}
-                    inputProps={{
-                      required: true,
-                      className:
-                        "w-full border border-gray-300 rounded-md py-1 px-3 focus:outline-none focus:ring focus:ring-blue-200 font-sans",
-                      "data-cy": "phone-input",
-                    }}
-                    containerStyle={{ marginTop: "8px" }}
-                    placeholder={field.value ? "" : "        Phone number"}
-                  />
-                </FormControl>
-                {!valid && (
-                  <FormMessage name="phoneNumber">
-                    Please enter a valid phone number.
-                  </FormMessage>
-                )}
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="companyName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Your Company Name *</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Enter your company name"
-                    data-cy="company-name-input"
-                    {...field}
-                    className="custom-input"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="companySize"
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <FormLabel>Company Size *</FormLabel>
-                <div className="w-full">
-                  <FormControl>
-                    <select
-                      {...field}
-                      className="w-full border border-gray-300 rounded-md py-1 px-3 focus:outline-none focus:ring focus:ring-blue-200 font-sans"
-                      data-cy="company-size-select" // Add your data-cy attribute here
-                    >
-                      <option value="">Select Company Size</option>
-                      <option value="11-50">11 to 50</option>
-                      <option value="51-200">51 to 200</option>
-                      <option value="201-500">201 to 500</option>
-                      <option value="501-1000">501 to 100</option>
-                      <option value="1001-5000">1001 to 5000</option>
-                      <option value="5001-10000">5001 to 10000</option>
-                      <option value="10001 +">10001 +</option>
-                    </select>
-                  </FormControl>
+                <div className="flex justify-center">
+                  <Button
+                    type="submit"
+                    className="w-full lg:w-96 mx-auto border-none text-sm text-white bg-[#22577A] hover:bg-[#22577A] rounded-full"
+                  >
+                    Submit
+                  </Button>
                 </div>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Message *</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Enter your message"
-                    data-cy="message-input"
-                    {...field}
-                    style={{ height: "120px" }}
-                    className="custom-input"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <Button
-            type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-normal py-2 px-4 rounded"
-          >
-            Submit
-          </Button>
-        </form>
-      </Form>
+              </form>
+            </Form>
+          </CardContent>
+          <CardFooter className="flex flex-col items-center gap-4"></CardFooter>
+        </Card>
+      </div>
     </div>
   );
-};
+}
 
-export default ContactUsPage;
+export default Page;

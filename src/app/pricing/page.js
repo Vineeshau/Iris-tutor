@@ -1,7 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { TiTick } from "react-icons/ti";
-import { Switch } from "@/Components/ui/switch";
 import { Button } from "@/Components/ui/button";
 import {
   Card,
@@ -34,7 +33,7 @@ const pricingData = [
     description: "For solopreneurs, bootstrappers, early stage startups",
     price: {
       monthly: 25,
-      yearly: 29,
+      yearly: 25,
     },
     features: [
       "5 Websites",
@@ -52,7 +51,7 @@ const pricingData = [
     description: "For established businesses",
     price: {
       monthly: 70,
-      yearly: 79,
+      yearly: 70,
     },
     features: [
       "Website",
@@ -65,79 +64,46 @@ const pricingData = [
 ];
 
 function Page(props) {
-  const [toggle, setToggle] = useState(false);
-
-  const toggleChange = () => {
-    setToggle(!toggle);
-  };
-
   return (
-    <div className="flex flex-col justify-center items-center gap-4 p-4 py-20 bg-gray-100">
+    <div className="flex flex-col justify-center items-center gap-8 p-4 py-20 bg-gray-100">
       <div className="flex flex-col items-center justify-center gap-6 text-center">
-        <p className="text-4xl leading-8 font-medium text-[#152237]">
-          Pricing that fits every stage
+        <p className="text-2xl sm:text-3xl md:text-4xl leading-8 font-medium text-[#152237]">
+          &quot;Unlock Your Potential: Affordable Learning, Unlimited Growth!&quot;
         </p>
-        <p className="text-xl text-[#152237]">
-          Whether you are just starting or have a growing startup
-        </p>
-        <div className="w-8 h-4 flex flex-row items-center justify-center gap-4">
-          <p
-            className={
-              toggle ? "font-normal text-[#152237]" : "font-bold text-[#152237]"
-            }
-          >
-            Yearly
-          </p>
-          <Switch onClick={toggleChange} />
-          <p
-            className={
-              toggle ? "font-bold text-[#152237]" : "font-normal text-[#152237]"
-            }
-          >
-            Monthly
-          </p>
-        </div>
-        <p>(Get 1 week free)</p>
       </div>
-      <div
-        className={
-          props.price
-            ? "flex flex-col items-center gap-4 w-full max-w-6xl"
-            : "flex flex-col lg:flex-row gap-4 w-full max-w-6xl"
-        }
-      >
+      <div className="flex flex-col lg:flex-row flex-wrap gap-4 w-full max-w-6xl justify-center">
         {pricingData.map((plan, index) => (
           <Card
             key={index}
-            className="w-full lg:w-[54%] flex flex-col gap-8 shadow-2xl"
+            className="w-full sm:w-[90%] md:w-[60%] lg:w-[30%] flex flex-col gap-6 sm:gap-8 shadow-lg md:shadow-2xl"
           >
-            <CardHeader className="flex justify-center items-center">
-              <CardTitle className="text-2xl text-[#152237]">
+            <CardHeader className="flex flex-col items-center text-center">
+              <CardTitle className="text-xl sm:text-2xl md:text-3xl text-[#152237]">
                 {plan.title}
               </CardTitle>
-              <CardDescription className="text-base text-[#152237]">
+              <CardDescription className="text-sm sm:text-base md:text-lg text-[#152237]">
                 {plan.description}
               </CardDescription>
             </CardHeader>
             <div className="flex justify-center">
-              <p className="text-4xl font-medium text-[#152237]">
-                {toggle ? `$${plan.price.yearly}` : `$${plan.price.monthly}`}
-                <span className="text-sm text-[#152237]">/week</span>
+              <p className="text-3xl sm:text-4xl md:text-5xl font-medium text-[#152237]">
+                ${plan.price.yearly}
+                <span className="text-sm sm:text-base text-[#152237]">/month</span>
               </p>
             </div>
-            <CardContent className="flex flex-col gap-4 flex-grow">
+            <CardContent className="flex flex-col gap-2 sm:gap-4 flex-grow">
               {plan.features.map((feature, index) => (
                 <div
                   key={index}
-                  className="text-sm text-[#152237] flex items-center gap-2"
+                  className="text-sm sm:text-base text-[#152237] flex items-center gap-2"
                 >
                   <TiTick className="text-yellow-500 text-lg" /> {feature}
                 </div>
               ))}
             </CardContent>
-            <CardFooter>
+            <CardFooter className="flex justify-center items-center">
               <Button
-                className={`w-full border-2 border-[#152237] text-white bg-[#3278FF] hover:bg-blue`}
+                className="w-40 border-2 border-[#152237] text-white bg-[#22577A] hover:bg-[#22577A] rounded-full"
               >
                 Get Started
               </Button>
