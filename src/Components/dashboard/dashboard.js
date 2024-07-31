@@ -1,75 +1,54 @@
-"use client";
-import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { Card, CardContent } from "@/Components/ui/card";
-import cardData from "../../data/dashboard_courses.json";
-import Image from "next/image";
-
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/Components/ui/tooltip";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   StickyNote,
   MessageSquare,
   NotebookPen,
   Files,
   CalendarDays,
-  X,
-} from "lucide-react";
-import New from "@/Components/dashboard/startNewCourseDialog";
-import ModuleCreationComponent from "@/Components/courses/module/addModule";
-import { toast } from "sonner";
+} from 'lucide-react';
+import New from '@/Components/dashboard/startNewCourseDialog';
+import {
+  toggleDialog,
+  setStoredCourses,
+  setActiveButton,
+  publishCourse,
+} from '@/store/dashboardSlice';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/Components/ui/tooltip';
 
 function Dashboard() {
-  const [activeButton, setActiveButton] = useState("first");
-  const { publishedDatas, unpublishedDatas } = cardData;
-  const [storedCourses, setStoredCourses] = useState([]);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [showModuleCreation, setShowModuleCreation] = useState(false);
+  const dispatch = useDispatch();
+  const storedCourses = useSelector((state) => state.dashboard.storedCourses);
+  const isDialogOpen = useSelector((state) => state.dashboard.isDialogOpen);
+  const activeButton = useSelector((state) => state.dashboard.activeButton);
 
   useEffect(() => {
-    const courses = JSON.parse(localStorage.getItem("courses")) || [];
-    setStoredCourses(courses);
+    const courses = JSON.parse(localStorage.getItem('courses')) || [];
+    dispatch(setStoredCourses(courses));
   }, [isDialogOpen]);
 
   const openDialog = () => {
-    setIsDialogOpen(!isDialogOpen);
-  };
-
-  const closeDialog = () => {
-    setIsDialogOpen(false);
+    dispatch(toggleDialog());
   };
 
   const handlePublish = (index) => {
-    const courses = [...storedCourses];
-    const course = courses[index];
-    const homeModuleData =
-      JSON.parse(localStorage.getItem("HomeModuleData")) || [];
-
-    const moduleExists = homeModuleData.some(
-      (module) => module.courseId === course.id
-    );
-
-    if (moduleExists) {
-      course.publish = true;
-      localStorage.setItem("courses", JSON.stringify(courses));
-      setStoredCourses(courses);
-    } else {
-      toast("Create a module first!");
-      setShowModuleCreation(!showModuleCreation);
-    }
+    dispatch(publishCourse(index));
+    // Implement any other logic needed
   };
 
   const filteredCourses = storedCourses.filter((course) =>
-    activeButton === "first" ? course.publish : !course.publish
+    activeButton === 'first' ? course.publish : !course.publish
   );
 
-  const moduleClose = () => {
-    setShowModuleCreation(!showModuleCreation);
+  const setActive = (button) => {
+    dispatch(setActiveButton(button));
   };
 
   return (
@@ -119,69 +98,81 @@ function Dashboard() {
         <div className="relative flex justify-center w-full h-1/12">
           <div className="relative flex justify-center px-4 md:px-36 w-full">
             <button
-              onClick={() => setActiveButton("first")}
+              onClick={() => setActive('first')}
               className={`px-4 py-2 ${
-                activeButton === "first"
-                  ? "text-blue-500 border-b-2 border-blue-500"
-                  : "text-gray-500 border-b-2 border-gray-500"
+                activeButton === 'first'
+                  ? 'text-blue-500 border-b-2 border-blue-500'
+                  : 'text-gray-500 border-b-2 border-gray-500'
               }`}
             >
               Published
             </button>
             <button
-              onClick={() => setActiveButton("second")}
+              onClick={() => setActive('second')}
               className={`px-4 py-2 ${
-                activeButton === "second"
-                  ? "text-blue-500 border-b-2 border-blue-500"
-                  : "text-gray-500 border-b-2 border-gray-500"
+                activeButton === 'second'
+                  ? 'text-blue-500 border-b-2 border-blue-500'
+                  : 'text-gray-500 border-b-2 border-gray-500'
               }`}
             >
               Unpublished
             </button>
           </div>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 max-w-7xl w-full mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10 max-w-10xl mx-auto py-6">
           {filteredCourses.map((course, index) => (
-            <Card key={index} className="border rounded-2xl shadow-2xl w-full">
-              <div className="relative">
-                {course.image && (
-                  <div className="relative">
-                    <Image
-                      src={course.image}
-                      alt={course.coursename}
-                      className="rounded-xl"
-                    />
-                    {activeButton === "second" && !course.publish && (
-                      <button
-                        className="absolute top-4 right-4 bg-black text-white px-2 py-1 rounded border border-black"
-                        onClick={() => handlePublish(index)}
-                      >
-                        Publish
-                      </button>
-                    )}
-                  </div>
+            <div
+              key={index}
+              className="max-w-md sm:max-w-full md:max-w-md lg:w-96 rounded-lg shadow-lg overflow-hidden bg-white"
+            >
+              <div className="relative h-48">
+                <Image
+                  alt="Course image"
+                  src={course.courseThumbnail}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-t-lg"
+                />
+                {activeButton === 'second' && !course.publish && (
+                  <button
+                    className="absolute top-4 right-4 bg-black text-white px-2 py-1 rounded border border-black"
+                    onClick={() => handlePublish(index)}
+                  >
+                    Publish
+                  </button>
                 )}
               </div>
-              <CardContent className="p-6">
-                <div className="text-xl font-bold mb-2 max-w-xs truncate">
-                  {course.coursename}
+              <div className="p-4 flex flex-col gap-6">
+                <div className="flex flex-col items-start justify-start">
+                  <h5 className="text-lg font-bold">{course.coursename}</h5>
                 </div>
-                <div className="text-xl font-normal mb-2">
-                  {course.duration}
-                </div>
+                <TooltipProvider>
+                  <Tooltip id="course-tooltip">
+                    <TooltipTrigger>
+                      <h5 className="text-medium font-semibold truncate">
+                        {course.description}
+                      </h5>
+                    </TooltipTrigger>
+                    <TooltipContent className="custom-tooltip-content w-80 text-sm">
+                      <p>{course.description}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+
+                <h5 className="text-sm font-semibold">{course.duration}</h5>
                 <div className="flex gap-4 md:gap-5 overflow-hidden mb-2">
-                  {activeButton === "first" && (
+                  {activeButton === 'first' && (
                     <>
                       <TooltipProvider key={index}>
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <Link
-                              href="/dashboard/courses"
+                              href=""
                               passHref
                               onClick={() =>
                                 localStorage.setItem(
-                                  "linkedItem",
-                                  "Announcement"
+                                  'linkedItem',
+                                  'Announcement'
                                 )
                               }
                             >
@@ -202,10 +193,13 @@ function Dashboard() {
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <Link
-                              href="/dashboard/courses"
+                              href=""
                               passHref
                               onClick={() =>
-                                localStorage.setItem("linkedItem", "Assignment")
+                                localStorage.setItem(
+                                  'linkedItem',
+                                  'Assignment'
+                                )
                               }
                             >
                               <div className="text-blue-500 hover:underline">
@@ -256,7 +250,7 @@ function Dashboard() {
                       </TooltipProvider>
                     </>
                   )}
-                  {activeButton === "second" && (
+                  {activeButton === 'second' && (
                     <TooltipProvider key={index}>
                       <Tooltip>
                         <TooltipTrigger asChild>
@@ -275,8 +269,8 @@ function Dashboard() {
                     </TooltipProvider>
                   )}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -284,16 +278,6 @@ function Dashboard() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="relative bg-white shadow-2xl rounded-2xl">
             {isDialogOpen && <New popUp={openDialog} />}
-          </div>
-        </div>
-      )}
-      {showModuleCreation && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="relative bg-white shadow-2xl rounded-2xl h-screen w-[1000px]">
-            <div className="flex justify-end p-5">
-              <X onClick={moduleClose} className="cursor-pointer" />
-            </div>
-            <ModuleCreationComponent />
           </div>
         </div>
       )}

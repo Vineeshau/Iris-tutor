@@ -11,15 +11,12 @@ import { Button } from "@/Components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/Components/ui/card";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -52,50 +49,47 @@ function Page() {
   };
 
   return (
-    <div className="py-20 w-full bg-gray-100">
-      <div className="flex justify-center">
-        <Card className="flex flex-col border-none shadow-2xl items-center rounded-2xl w-96 lg:w-[450px] shadow-2x gap-6">
-          <CardHeader>
-            <CardTitle>
-              <div className="py-8">
-                <Image src="/logo.svg" width={150} height={500} alt="Image" />
-              </div>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-4 items-center">
-            <p className="text-2xl font-bold text-[#171A1F]">Sign In</p>
-            <Link href="/">
-              <div className="w-full lg:w-96 h-11 rounded-xl border border-[#8e939d] flex justify-center items-center text-lg text-[#171A1F]">
-                <FcGoogle />
-                Sign in with Google
-              </div>
-            </Link>
-            <div className="pt-4">
-              <hr className="w-full lg:w-96 border-[#ededed]" />
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#E8F3FA] py-8 md:py-16">
+      <div className="w-full max-w-md px-4">
+        <Card className="flex flex-col border-none shadow-lg rounded-lg">
+          <CardHeader className="text-center py-6">
+            <div className="flex justify-center">
+              <Image
+                src="/iris_logo.svg"
+                width={80}
+                height={80}
+                alt="IrisTutor Logo"
+              />
             </div>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center px-8">
+            <h1 className="text-2xl font-bold text-[#171A1F] mb-4">Login</h1>
+            <Button className="w-full mb-4 bg-white border border-gray-300 text-black flex items-center justify-center gap-2 hover:bg-gray-100">
+              <FcGoogle />
+              Sign in with Google
+            </Button>
+
+            <p className="text-gray-600 mb-4">or use your email account</p>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-6 mt-6"
+                className="space-y-4 w-full"
               >
                 <FormField
                   control={form.control}
                   name="email"
                   render={({ field }) => (
-                    <FormItem className="flex flex-col">
-                      <FormLabel className="text-[#616161] text-xs font-bold">
-                        Email
-                      </FormLabel>
+                    <FormItem>
+                      <FormLabel className="text-gray-700">Email</FormLabel>
                       <FormControl>
                         <Input
                           type="email"
-                          data-cy="email-input"
                           placeholder="Your Email"
-                          className="p-4 rounded-xl border-[#8e939d]"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-200"
                           {...field}
                         />
                       </FormControl>
-                      <FormMessage className="w-72 lg:w-96" />
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -103,49 +97,52 @@ function Page() {
                   control={form.control}
                   name="password"
                   render={({ field }) => (
-                    <FormItem className="flex flex-col relative">
-                      <FormLabel className="text-[#616161] text-xs font-bold">
-                        Password
-                      </FormLabel>
+                    <FormItem className="relative">
+                      <FormLabel className="text-gray-700">Password</FormLabel>
                       <FormControl>
-                        <Input
-                          type={showPassword ? "text" : "password"}
-                          data-cy="password-input"
-                          placeholder="Password"
-                          className="p-4 rounded-xl border-[#8e939d]"
-                          {...field}
-                        />
+                        <div className="relative w-full">
+                          <Input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Password"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-200 pr-10"
+                            {...field}
+                          />
+                          <span
+                            className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+                            onClick={togglePasswordVisibility}
+                          >
+                            {showPassword ? (
+                              <BiSolidShow className="text-xl text-gray-700" />
+                            ) : (
+                              <BiSolidHide className="text-xl text-gray-700" />
+                            )}
+                          </span>
+                        </div>
                       </FormControl>
-                      {showPassword ? (
-                        <BiSolidShow
-                          className="absolute right-4 top-9 transform -translate-y-1/2 text-black text-xl cursor-pointer"
-                          onClick={togglePasswordVisibility}
-                        />
-                      ) : (
-                        <BiSolidHide
-                          className="absolute right-4 top-9 transform -translate-y-1/2 text-black text-xl cursor-pointer"
-                          onClick={togglePasswordVisibility}
-                        />
-                      )}
-                      <FormMessage className="w-72 lg:w-96" />
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
+
+                <Link
+                  href="/forgotPassword"
+                  className="text-sm text-blue-500 self-end"
+                >
+                  Forgot Password?
+                </Link>
                 <Button
                   type="submit"
-                  className="w-full lg:w-96 rounded border-none text-sm text-white bg-blue-500"
+                  className="w-full bg-[#22577A] text-white py-2 rounded-md hover:bg-[#22577A]"
                 >
                   Sign In
                 </Button>
               </form>
             </Form>
           </CardContent>
-          <CardFooter className="flex flex-col items-center gap-4">
-            <Link href="/signup" className="text-[#2279FE] text-base">
-              Sign Up
-            </Link>
-            <Link href="/forgotPassword" className="text-[#2279FE] text-base">
-              Having trouble signing in?
+          <CardFooter className="flex flex-col items-center gap-2 pb-4">
+            <p className="text-gray-600">Do you have an account?</p>
+            <Link href="/signup" className="text-blue-500">
+              Sign Up!
             </Link>
           </CardFooter>
         </Card>

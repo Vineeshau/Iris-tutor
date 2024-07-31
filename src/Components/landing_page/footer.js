@@ -46,17 +46,17 @@ function Footer() {
               <h3 className="text-lg font-bold text-black mb-4">Company</h3>
               <ul>
                 <li className="mb-2">
-                  <Link href="#" className="hover:text-white">
+                  <Link href="#" className="hover:text-black">
                     About
                   </Link>
                 </li>
                 <li className="mb-2">
-                  <Link href="#" className="hover:text-white">
+                  <Link href="#" className="hover:text-black">
                     Careers
                   </Link>
                 </li>
                 <li className="mb-2">
-                  <Link href="/contactus" className="hover:text-white">
+                  <Link href="/contactus" className="hover:text-black">
                     Contacts
                   </Link>
                 </li>
@@ -66,17 +66,17 @@ function Footer() {
               <h3 className="text-lg font-bold text-black mb-4">Product</h3>
               <ul>
                 <li className="mb-2">
-                  <Link href="#" className="hover:text-white">
+                  <Link href="#" className="hover:text-black">
                     Features
                   </Link>
                 </li>
                 <li className="mb-2">
-                  <Link href="/pricing" className="hover:text-white">
+                  <Link href="/pricing" className="hover:text-black">
                     Pricing
                   </Link>
                 </li>
                 <li className="mb-2">
-                  <Link href="#" className="hover:text-white">
+                  <Link href="#" className="hover:text-black">
                     Security
                   </Link>
                 </li>
@@ -86,17 +86,17 @@ function Footer() {
               <h3 className="text-lg font-bold text-black mb-4">Support</h3>
               <ul>
                 <li className="mb-2">
-                  <Link href="#" className="hover:text-white">
+                  <Link href="#" className="hover:text-black">
                     Help Center
                   </Link>
                 </li>
                 <li className="mb-2">
-                  <Link href="#" className="hover:text-white">
+                  <Link href="#" className="hover:text-black">
                     API
                   </Link>
                 </li>
                 <li className="mb-2">
-                  <Link href="#" className="hover:text-white">
+                  <Link href="#" className="hover:text-black">
                     FAQ
                   </Link>
                 </li>
