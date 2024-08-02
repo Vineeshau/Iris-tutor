@@ -105,12 +105,12 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
+      {/* <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
         <p>
           &copy; {new Date().getFullYear()} Copyright 2024 IRISTUTOR. All rights
           reserved.
         </p>
-      </div>
+      </div> */}
     </footer>
   );
 }
